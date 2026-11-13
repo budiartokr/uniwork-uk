@@ -1,0 +1,24 @@
+{
+  "name": "UniWork UK",
+  "short_name": "UniWork",
+  "description": "From your first week to your Graduate visa: visa-safe part-time jobs, money and next steps for international students in the UK.",
+  "id": "/",
+  "start_url": "/#my-plan",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F5F6FB",
+  "theme_color": "#1E4ADD",
+  "lang": "en-GB",
+  "categories": ["education", "productivity", "finance"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Log a shift", "url": "/#hours-and-pay", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Part-time jobs", "url": "/#part-time-jobs", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Before you fly", "url": "/#before-you-fly", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
