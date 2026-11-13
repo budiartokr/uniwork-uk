@@ -72,6 +72,7 @@ textarea:focus{border-color:#F8D93A;outline:none}
 @media (max-width:900px){.topnav{display:none !important}.bottomnav{display:flex !important}.root{padding-bottom:132px}.hidesm{display:none !important}.offerbar{bottom:62px}.offertext{display:none !important}}
 @media (prefers-reduced-motion:reduce){.btn,.lift,.onbtab,.jtab{transition:none}.btn:hover,.lift:hover{transform:none}}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.footlink{display:inline-flex;align-items:center;min-height:36px;padding:0;border:none;background:none;color:#FFFFFF;font-size:15px;text-align:left;cursor:pointer}.footlink:hover{color:#F8D93A;text-decoration:underline;text-underline-offset:3px}
 </style>
 <style>@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:400;src:url(fonts/geist-latin-400-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:500;src:url(fonts/geist-latin-500-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:600;src:url(fonts/geist-latin-600-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:700;src:url(fonts/geist-latin-700-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:800;src:url(fonts/geist-latin-800-normal.woff2) format('woff2')}</style>
 <style>@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:400;src:url(fonts/geist-latin-400-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:500;src:url(fonts/geist-latin-500-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:600;src:url(fonts/geist-latin-600-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:700;src:url(fonts/geist-latin-700-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:800;src:url(fonts/geist-latin-800-normal.woff2) format('woff2')}</style>
@@ -1871,19 +1872,40 @@ UniWork UK
 </div>
 </template>
 
-<footer style="background: #14174F; color: #FFFFFF; padding: 40px clamp(16px, 4vw, 56px)">
-<p style="max-width: 1280px; margin: 0 auto 22px; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(34px, 5vw, 64px); letter-spacing: -0.03em; line-height: 1"><span style="color: #FFFFFF">Arrive. </span><span style="color: #F8D93A">Work. </span><span style="color: #FFFFFF">Save. </span><span style="color: #F8D93A">Stay.</span></p>
-<div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 20px 64px; justify-content: space-between; font-size: 15px">
-<p style="margin: 0; flex: 1 1 320px; max-width: 46em"><strong style="display: block; font-size: 17px; margin-bottom: 6px">From your first week to the Graduate route: visa-safe work, money and next steps for international students.</strong>UniWork UK gives general information, not immigration, tax or legal advice. Immigration advice in the UK is regulated by the Immigration Advice Authority: for your own case, speak to your university adviser or a registered immigration adviser. Checked on 11 November 2026: minimum wage £12.71 an hour at 21 and over, £10.85 at 18 to 20; Personal Allowance £12,570. Job listings from Reed.co.uk (12 November 2026) and s1jobs.com (11 November 2026); sponsor register from GOV.UK (11 November 2026).</p>
-<p style="margin: 0; display: flex; flex-wrap: wrap; gap: 6px 20px; align-items: center">
+<footer class="sitefoot" style="background: #14174F; color: #FFFFFF; padding: clamp(40px, 5vw, 64px) clamp(16px, 4vw, 56px) 28px">
+<div style="max-width: 1280px; margin: 0 auto">
+<div style="display: flex; flex-wrap: wrap; gap: 36px 40px">
+<div style="flex: 1 1 280px; max-width: 330px">
+<button onClick="{{go.start}}" aria-label="UniWork UK home" style="display: flex; align-items: center; gap: 10px; background: none; border: none; padding: 0; min-height: 44px; color: #FFFFFF; font-family: Geist, sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -0.02em"><svg aria-hidden="true" viewBox="0 0 32 32" width="36" height="36" style="flex: none"><circle cx="16" cy="16" r="16" style="fill: #1E4ADD"></circle><path d="M5 13.5 16 8l11 5.5L16 19z" style="fill: #FFFFFF"></path><path d="M10 16.5v4.5c0 1.8 2.7 3.2 6 3.2s6-1.4 6-3.2v-4.5L16 19.5z" style="fill: #F8D93A"></path><path d="M25 14v6" style="stroke: #FFFFFF; stroke-width: 1.6; stroke-linecap: round"></path></svg>UniWork UK</button>
+<p style="margin: 14px 0 0; font-size: 17px; font-weight: 700">Work in the UK, the visa-safe way.</p>
+<p style="margin: 8px 0 0; font-size: 15px; color: #DCE3FF">From your first week to the Graduate route: visa-safe work, money and next steps for international students.</p>
+<p style="margin: 16px 0 0; font-size: 14px; color: #DCE3FF">Built by <a href="https://www.globaltalent-education.com" target="_blank" rel="noopener" style="color: #F8D93A; font-weight: 700">Global Talent Education</a>, a team of international students and graduates.</p>
+</div>
+<template data-sc="for" list="{{foot.cols}}" as="c" hint-placeholder-count="3"><nav aria-label="{{c.t}}" style="flex: 1 1 140px">
+<h2 style="margin: 0 0 12px; font-family: Geist, sans-serif; font-size: 15px; font-weight: 800; color: #F8D93A">{{c.t}}</h2>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px">
+<template data-sc="for" list="{{c.links}}" as="l" hint-placeholder-count="5"><li><button class="footlink" onClick="{{l.go}}">{{l.t}}</button></li></template>
+</ul>
+</nav></template>
+<div style="flex: 1 1 230px">
+<h2 style="margin: 0 0 12px; font-family: Geist, sans-serif; font-size: 15px; font-weight: 800; color: #F8D93A">Contact</h2>
+<p style="margin: 0; font-size: 15px"><a href="mailto:admin@globaltalent-education.com" style="color: #FFFFFF; font-weight: 600">admin<wbr>@globaltalent-education.com</a></p>
+<h3 style="margin: 18px 0 4px; font-size: 14px; font-weight: 700">United Kingdom</h3>
+<p style="margin: 0; font-size: 14px; color: #DCE3FF">St. Johns Close, Woodsley,<br>Leeds, West Yorkshire</p>
+<h3 style="margin: 14px 0 4px; font-size: 14px; font-weight: 700">Indonesia</h3>
+<p style="margin: 0; font-size: 14px; color: #DCE3FF">Taman Arcadia Mediterania, Tapos,<br>Depok, West Java</p>
+<a class="btn sun" href="https://www.globaltalent-education.com" target="_blank" rel="noopener" style="margin-top: 18px; min-height: 44px">Book a free consultation</a>
+</div>
+</div>
+<p aria-hidden="true" style="margin: clamp(36px, 5vw, 56px) 0 0; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(34px, 5vw, 64px); letter-spacing: -0.03em; line-height: 1"><span style="color: #FFFFFF">Arrive. </span><span style="color: #F8D93A">Work. </span><span style="color: #FFFFFF">Save. </span><span style="color: #F8D93A">Stay.</span></p>
+<p style="margin: 22px 0 0; max-width: 62em; font-size: 13px; line-height: 1.55; color: #DCE3FF">UniWork UK gives general information, not immigration, tax or legal advice. Immigration advice in the UK is regulated by the Immigration Advice Authority: for your own case, speak to your university adviser or a registered immigration adviser. Checked on 11 November 2026: minimum wage £12.71 an hour at 21 and over, £10.85 at 18 to 20; Personal Allowance £12,570. Job listings from Reed.co.uk (12 November 2026) and s1jobs.com (11 November 2026); sponsor register from GOV.UK (11 November 2026).</p>
+<div style="margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.18); display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; justify-content: space-between; font-size: 14px">
+<p style="margin: 0; color: #DCE3FF">© 2026 Global Talent Education. All rights reserved.</p>
+<p style="margin: 0; display: flex; flex-wrap: wrap; gap: 4px 20px"><span style="color: #DCE3FF">Official sources:</span>
 <a href="https://www.gov.uk/student-visa" target="_blank" rel="noopener" style="color: #F8D93A">Student visa rules</a>
-<a href="https://www.gov.uk/national-minimum-wage-rates" target="_blank" rel="noopener" style="color: #F8D93A">Minimum wage rates</a>
-<a href="https://www.gov.uk/prove-right-to-work" target="_blank" rel="noopener" style="color: #F8D93A">Prove your right to work</a>
-<button onClick="{{go.partners}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #F8D93A; font-size: 15px; text-decoration: underline">Student deals</button>
-<button onClick="{{openInstall}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #F8D93A; font-size: 15px; text-decoration: underline">Get the app on your phone</button>
-<button onClick="{{openGloss}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #F8D93A; font-size: 15px; text-decoration: underline">Jargon buster</button>
-<button onClick="{{go.employers}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #F8D93A; font-size: 15px; text-decoration: underline">For employers</button>
-</p>
+<a href="https://www.gov.uk/national-minimum-wage-rates" target="_blank" rel="noopener" style="color: #F8D93A">Minimum wage</a>
+<a href="https://www.gov.uk/prove-right-to-work" target="_blank" rel="noopener" style="color: #F8D93A">Right to work</a></p>
+</div>
 </div>
 </footer>
 </div>
@@ -4113,6 +4135,11 @@ class Component extends DCLogic {
       barOn, hdrAccClass: barOn ? 'hidesm' : '', quick, inst, em, showInstallCard,
       installOpen: !!s.installOpen, openInstall: () => { this.track('install_open'); set({ installOpen: true, helpOpen: false }); }, closeInstall: () => set({ installOpen: false }),
       dismissInstall: () => set({ installDismissed: true }),
+      foot: { cols: [
+        { t: 'Your journey', links: [['My plan', go.dashboard], ['Before you fly', go.fly], ['Arrive', go.arrive], ['Part-time jobs', go.work], ['Money', go.cash], ['After graduation', go.stay]] },
+        { t: 'Visa tools', links: [['Can I take this job?', () => set({ tab: 'jobs', adText: s.adText || AD_EXAMPLE })], ['Company check', agGo.company], ['Graduate visa timeline', agGo.timeline], ['Skilled Worker rules', agGo.sw], ['Global Talent visa', agGo.gt]] },
+        { t: 'Help', links: [['Get help', () => { this.track('help_open'); set({ helpOpen: true }); }], ['Find a mentor', go.mentor], ['Student deals', go.partners], ['Jargon buster', openGloss()], ['Get the app on your phone', () => { this.track('install_open'); set({ installOpen: true }); }], ['For employers', go.employers]] }
+      ].map((c) => ({ t: c.t, links: c.links.map(([t, g]) => ({ t, go: () => { g(); try { window.scrollTo(0, 0); } catch (e) { /* ignore */ } } })) })) },
       helpOpen: !!s.helpOpen, openHelp: () => { this.track('help_open'); set({ helpOpen: true }); }, closeHelp: () => set({ helpOpen: false }), helpCards,
       doorHome: () => set({ profile: { ...this.state.profile, pre: true }, tab: 'predep' }),
       doorUk: () => set({ profile: { ...this.state.profile, pre: false }, tab: 'jobs', view: 'all' }),
