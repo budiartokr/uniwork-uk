@@ -1347,7 +1347,7 @@ UniWork UK
 <h2 id="fxr-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; font-size: 22px; color: #F8D93A">In your UK account</h2>
 <p style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(40px, 5vw, 58px); letter-spacing: -0.04em; line-height: 1">{{fx.gbp}}</p>
 <p style="margin: 0; font-size: 15px">{{fx.compare}}</p>
-<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><button class="btn sun" onClick="{{fx.useIt}}">Use as family support in my plan</button><a class="btn ghost" href="{{pUrl.wise}}" target="_blank" rel="noopener" onClick="{{pClick.wise}}">Compare with Wise (partner)</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px"><button class="btn sun" onClick="{{fx.useIt}}">Use as family support in my plan</button><a class="btn ghost" href="{{pUrl.wise}}" target="_blank" rel="noopener" onClick="{{pClick.wise}}">Send with Wise (partner)</a></div>
 </section>
 </div>
 </template>
@@ -1394,9 +1394,9 @@ UniWork UK
 <button class="btn sun" onClick="{{bills.useIt}}" style="align-self: flex-start">Use as my bills in the plan</button>
 <p style="margin: 8px 0 0; font-weight: 700">Partners for shared houses</p>
 <ul style="margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: 15px">
-<li><a href="{{pUrl.unihomes}}" target="_blank" rel="noopener" onClick="{{pClick.unihomes}}" style="color: #F8D93A; font-weight: 700">UniHomes</a>: houses with all bills in one payment, or a bills package for a house you already rent.</li>
-<li><a href="{{pUrl.octopus}}" target="_blank" rel="noopener" onClick="{{pClick.octopus}}" style="color: #F8D93A; font-weight: 700">Octopus Energy</a>: a referral link gives you £50 credit.</li>
+<li><a href="{{pUrl.octopus}}" target="_blank" rel="noopener" onClick="{{pClick.octopus}}" style="color: #F8D93A; font-weight: 700">Octopus Energy</a>: one of the cheaper energy suppliers; joining through this link adds credit.</li>
 <li><a href="{{pUrl.virgin}}" target="_blank" rel="noopener" onClick="{{pClick.virgin}}" style="color: #F8D93A; font-weight: 700">Virgin Media</a>: broadband for the house; match the contract to your tenancy.</li>
+<li><a href="{{pUrl.uhomes}}" target="_blank" rel="noopener" onClick="{{pClick.uhomes}}" style="color: #F8D93A; font-weight: 700">uhomes</a>: still looking for a room? Compare places and get cashback when you book.</li>
 </ul>
 </section>
 </div>
@@ -1480,28 +1480,54 @@ UniWork UK
 <main style="background: #F5F6FB; padding-bottom: 80px">
 <section style="background: #1E4ADD; color: #FFFFFF; padding: clamp(28px, 4vw, 52px) clamp(16px, 4vw, 40px)">
 <div style="max-width: 1240px; margin: 0 auto">
-<p style="margin: 0 0 8px; font-weight: 700; color: #F8D93A">Picked for your first year in the UK</p>
+<p style="margin: 0 0 8px; font-weight: 700; color: #F8D93A">Money. Deals for your first year in the UK</p>
 <h1 style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(36px, 5vw, 64px); line-height: 1; letter-spacing: -0.035em">Partner deals</h1>
-<p style="margin: 14px 0 0; max-width: 44em; font-size: 18px">Banking, money transfers, phone, housing, energy, broadband and food. Each card says who it suits and what to watch out for.</p>
-<p style="margin: 12px 0 0; max-width: 44em; font-size: 14px; color: #DCE3FF">Some links are partner links: UniWork may earn a fee when you sign up, at no cost to you. Partners never change our visa checks or advice.</p>
+<p style="margin: 14px 0 0; max-width: 44em; font-size: 18px">A bank account, money from home, a room, bills, essentials and cheap food. Each deal says when you need it and what to watch out for.</p>
+<h2 style="margin: 26px 0 12px; font-family: Geist, sans-serif; font-weight: 800; letter-spacing: -0.02em; font-size: 22px; color: #F8D93A">{{deals.pickTitle}}</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px">
+<template data-sc="for" list="{{deals.picks}}" as="p" hint-placeholder-count="3">
+<a href="{{p.url}}" target="_blank" rel="noopener" onClick="{{p.click}}" style="display: flex; gap: 14px; align-items: center; background: #FFFFFF; color: #14174F; border-radius: 16px; padding: 14px 16px; text-decoration: none; min-height: 76px">
+<span aria-hidden="true" style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: {{p.color}}; color: #FFFFFF; display: grid; place-items: center; font-family: Geist, sans-serif; font-weight: 800; font-size: 22px">{{p.initial}}</span>
+<span style="flex: 1; min-width: 0"><strong style="display: block; font-family: Geist, sans-serif; font-weight: 800; font-size: 18px">{{p.name}}</strong><span style="display: block; font-size: 14px">{{p.offer}}</span></span>
+<span aria-hidden="true" style="flex: none; font-size: 22px; font-weight: 800; color: #1E4ADD">→</span>
+</a>
+</template>
+</div>
 </div>
 </section>
-<div style="max-width: 1240px; margin: 0 auto; padding: 28px clamp(16px, 4vw, 40px) 0">
-<template data-sc="for" list="{{partnerGroups}}" as="g" hint-placeholder-count="4">
-<section style="margin-bottom: 26px">
-<h2 style="margin: 0 0 12px; font-family: Geist, sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; font-size: 26px">{{g.t}}</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px">
-<template data-sc="for" list="{{g.items}}" as="p" hint-placeholder-count="3"><article style="background: #FFFFFF; border: 1px solid #E3E7F5; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 8px">
-<div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline"><h3 style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 20px">{{p.name}}</h3><span style="font-size: 12px; font-weight: 700; color: #4A4F86">Partner link</span></div>
+<div style="max-width: 1240px; margin: 0 auto; padding: 24px clamp(16px, 4vw, 40px) 0">
+<nav aria-label="Deal categories" style="position: sticky; top: 64px; z-index: 5; background: #F5F6FB; padding: 8px 0 12px; display: flex; gap: 8px; overflow-x: auto">
+<template data-sc="for" list="{{deals.cats}}" as="c" hint-placeholder-count="5"><button onClick="{{c.go}}" aria-pressed="{{c.on}}" style="flex: none; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid #1E4ADD; background: {{c.bg}}; color: {{c.fg}}; font-size: 15px; font-weight: 700; white-space: nowrap">{{c.label}} <span style="font-weight: 500">({{c.n}})</span></button></template>
+</nav>
+<template data-sc="for" list="{{deals.groups}}" as="g" hint-placeholder-count="4">
+<section style="margin: 14px 0 28px">
+<h2 style="margin: 0 0 4px; font-family: Geist, sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; font-size: 26px">{{g.t}}</h2>
+<p style="margin: 0 0 14px; font-size: 15px; color: #4A4F86">{{g.d}}</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 14px">
+<template data-sc="for" list="{{g.items}}" as="p" hint-placeholder-count="3">
+<article style="background: #FFFFFF; border: 1px solid #E3E7F5; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column">
+<div style="background: {{p.color}}; color: #FFFFFF; padding: 16px 18px; display: flex; gap: 12px; align-items: center">
+<span aria-hidden="true" style="flex: none; width: 46px; height: 46px; border-radius: 12px; background: rgba(255,255,255,.18); display: grid; place-items: center; font-family: Geist, sans-serif; font-weight: 800; font-size: 22px">{{p.initial}}</span>
+<div style="flex: 1; min-width: 0"><h3 style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 20px; line-height: 1.15">{{p.name}}</h3><p style="margin: 2px 0 0; font-size: 13px">{{p.tag}}</p></div>
+<template data-sc="if" value="{{p.hasWhen}}" hint-placeholder-val="{{true}}"><span style="flex: none; font-size: 12px; font-weight: 800; background: #F8D93A; color: #0B1440; border-radius: 999px; padding: 4px 10px">{{p.when}}</span></template>
+</div>
+<div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+<template data-sc="if" value="{{p.hasOffer}}" hint-placeholder-val="{{true}}"><p style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 19px; line-height: 1.2">{{p.offer}}</p></template>
 <p style="margin: 0; font-size: 15px"><strong style="font-weight: 700">Good for:</strong> {{p.good}}</p>
 <p style="margin: 0; font-size: 15px"><strong style="font-weight: 700">Tip:</strong> {{p.tip}}</p>
 <template data-sc="if" value="{{p.hasWarn}}" hint-placeholder-val="{{false}}"><p style="margin: 0; font-size: 15px; background: #FDE2E6; color: #7A0E1F; border-radius: 10px; padding: 10px 12px"><strong style="font-weight: 800">Visa warning:</strong> {{p.warn}}</p></template>
-<a class="btn ind" href="{{p.url}}" target="_blank" rel="noopener" onClick="{{p.click}}" style="margin-top: auto; align-self: flex-start; min-height: 44px">{{p.cta}}</a>
-<p style="margin: 0; font-size: 12px; color: #4A4F86">{{p.note}}</p>
-</article></template>
+<template data-sc="if" value="{{p.hasCode}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; background: #FFF3CC; border: 2px dashed #E0A100; border-radius: 12px; padding: 10px 12px"><span style="font-size: 14px">Code</span><strong style="font-family: Geist, sans-serif; font-weight: 800; font-size: 20px; letter-spacing: .08em">{{p.code}}</strong><button onClick="{{p.copy}}" style="margin-left: auto; min-height: 40px; padding: 0 14px; border-radius: 10px; border: 2px solid #14174F; background: #FFFFFF; color: #14174F; font-size: 14px; font-weight: 700">{{p.copyLabel}}</button></div></template>
+<a class="btn ind" href="{{p.url}}" target="_blank" rel="noopener" onClick="{{p.click}}" style="margin-top: auto; align-self: stretch; text-align: center; min-height: 48px">{{p.cta}}</a>
+</div>
+</article>
+</template>
 </div>
 </section>
 </template>
+<section aria-labelledby="disc-h" style="background: #FFFFFF; border: 1px solid #E3E7F5; border-radius: 16px; padding: 18px 20px; max-width: 52em">
+<h2 id="disc-h" style="margin: 0 0 6px; font-family: Geist, sans-serif; font-weight: 800; font-size: 18px">About these links</h2>
+<p style="margin: 0; font-size: 14px">Cards marked “Referral link” are referral links: UniWork may get a reward when you sign up, at no cost to you, and some give you a reward too. Each company sets its own rewards and terms, and can change them, so check them before you sign up. Partners never change our visa checks or advice.</p>
+</section>
 </div>
 </main>
 </template>
@@ -1700,6 +1726,7 @@ UniWork UK
 <a href="https://www.gov.uk/student-visa" target="_blank" rel="noopener" style="color: #F8D93A">Student visa rules</a>
 <a href="https://www.gov.uk/national-minimum-wage-rates" target="_blank" rel="noopener" style="color: #F8D93A">Minimum wage rates</a>
 <a href="https://www.gov.uk/prove-right-to-work" target="_blank" rel="noopener" style="color: #F8D93A">Prove your right to work</a>
+<button onClick="{{go.partners}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #F8D93A; font-size: 15px; text-decoration: underline">Student deals</button>
 <button onClick="{{openInstall}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #F8D93A; font-size: 15px; text-decoration: underline">Get the app on your phone</button>
 <button onClick="{{openGloss}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #F8D93A; font-size: 15px; text-decoration: underline">Jargon buster</button>
 </p>
@@ -2247,17 +2274,33 @@ const mondayOf = (str) => { const d = new Date(str + 'T12:00:00'); d.setDate(d.g
 const addDays = (str, n) => { const d = new Date(str + 'T12:00:00'); d.setDate(d.getDate() + n); return isoDate(d); };
 const shortDay = (str) => new Date(str + 'T12:00:00').toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
 const PARTNERS = {
-  // Paste each referral link into ref when it arrives; until then the button opens the partner's own site.
-  lloyds: { name: 'Lloyds Bank', group: 'Money', ref: '', site: 'https://www.lloydsbank.com', good: 'A high-street bank account with branches, if you prefer to bank in person.', tip: 'Bring your passport, your eVisa share code and a university letter with your UK address.' },
-  revolut: { name: 'Revolut', group: 'Money', ref: '', site: 'https://www.revolut.com/en-GB/', good: 'An app account you can usually open quickly with your passport, with spending in many currencies.', tip: 'Useful in your first week while a high-street account is still being set up.' },
-  wise: { name: 'Wise', group: 'Money', ref: '', site: 'https://wise.com/gb/', good: 'Sending money from home at the mid-market exchange rate with the fee shown up front.', tip: 'Compare the total cost with your bank before a big tuition or rent transfer.' },
-  voxi: { name: 'VOXI', group: 'Phone', ref: '', site: 'https://www.voxi.co.uk', good: 'SIM-only plans on the Vodafone network with unlimited social media data.', tip: 'Rolling 30-day plans with no contract, so you can cancel any time.' },
-  unihomes: { name: 'UniHomes', group: 'Home', ref: '', site: 'https://www.unihomes.co.uk', good: 'Student houses with gas, electricity, water, internet and TV Licence in one monthly payment.', tip: 'Already found a house elsewhere? You can still add a bills package for the whole house.' },
-  octopus: { name: 'Octopus Energy', group: 'Home', ref: '', site: 'https://octopus.energy', good: 'Gas and electricity for a shared house that pays its own bills.', tip: 'Joining through a referral link gives you and the referrer £50 credit each. Octopus sets the amount.' },
-  virgin: { name: 'Virgin Media', group: 'Home', ref: '', site: 'https://www.virginmedia.com', good: 'Fast broadband for a shared student house.', tip: 'Check the contract length against your tenancy, and agree who signs and how you split it.' },
-  ubereats: { name: 'Uber Eats', group: 'Food', ref: '', site: 'https://www.ubereats.com/gb', good: 'Food and grocery delivery when you order as a customer.', tip: 'Look for first-order and student offers in the app.', warn: 'Do not sign up to deliver for Uber Eats. Couriers are self-employed, which a Student visa does not allow.' },
-  deliveroo: { name: 'Deliveroo', group: 'Food', ref: '', site: 'https://deliveroo.co.uk', good: 'Food and grocery delivery when you order as a customer.', tip: 'Look for first-order and student offers in the app.', warn: 'Do not sign up as a Deliveroo rider. Riders are self-employed, which a Student visa does not allow.' }
+  // ref = referral link (opens first); site = official site used when there is no referral link.
+  revolut: { name: 'Revolut', group: 'bank', color: '#1E4ADD', when: 'Week 1', ref: 'https://revolut.com/referral/?referral-code=budiarss8l!NOV1-26-AR-H1&geo-redirect', site: 'https://www.revolut.com/en-GB/',
+    offer: 'An app account you can use within a day', good: 'Paying for things in your first days while a high-street account is still being set up. Spend in many currencies.', tip: 'Have your passport ready. Add your UK address once you have one.' },
+  monzo: { name: 'Monzo', group: 'bank', color: '#C0152F', when: 'Week 1', ref: 'https://join.monzo.com/c/3k76s0lh', site: 'https://monzo.com',
+    offer: 'An app account you can use within a day', good: 'A UK current account in an app, with instant spending alerts and easy bill splitting with housemates.', tip: 'Have your passport and UK address ready. One account for your wages and rent keeps things simple.' },
+  lloyds: { name: 'Lloyds Bank', group: 'bank', color: '#14653F', when: 'Week 1–2', ref: 'https://apply.lloydsbank.co.uk/pca/onboard/lloyds/index-app.html?from=ob&channel=referrals&journeyType=raf&referralToken=4egSY6Z8toZPKxp4mXGA9+nyPEDrWe+waADstUNnp00=', site: 'https://www.lloydsbank.com',
+    offer: 'Get £30 when you sign up through this link', good: 'A high-street bank with branches, if you prefer to bank in person.', tip: 'Bring your passport, your eVisa share code and a university letter with your UK address. Lloyds sets the reward terms.' },
+  wise: { name: 'Wise', group: 'bank', color: '#0B1440', when: 'Before you fly', ref: 'https://wise.com/invite/ilpc/budiartob2', site: 'https://wise.com/gb/',
+    offer: 'Send money from home at the mid-market rate', good: 'Moving money from home for fees, rent and living costs, with the fee shown before you send.', tip: 'Compare the total cost with your bank before a big tuition or rent transfer.' },
+  uhomes: { name: 'uhomes', group: 'home', color: '#5B3FD1', when: 'Before you fly', ref: 'https://en.uhomes.com/referral/partnerShare?xcode=000a2ce59b11c81e92ea', site: 'https://en.uhomes.com',
+    offer: 'Cashback when you book through this link', good: 'Comparing student halls and private rooms in UK cities before you arrive.', tip: 'Never pay a deposit for a room that you, or someone you trust, has not seen. Check the cashback terms before you book.' },
+  octopus: { name: 'Octopus Energy', group: 'home', color: '#B45309', when: 'Moving in', ref: 'https://share.octopus.energy/coral-goose-842', site: 'https://octopus.energy',
+    offer: 'One of the cheaper energy suppliers, with a referral credit', good: 'Gas and electricity for a shared house that pays its own bills.', tip: 'Joining through this link adds credit to your account. Octopus sets the amount.' },
+  virgin: { name: 'Virgin Media', group: 'home', color: '#7A0E1F', when: 'Moving in', ref: 'https://aklam.io/o7FquvOo', site: 'https://www.virginmedia.com',
+    offer: 'Fast broadband for the whole house', good: 'Wi-fi for a shared student house.', tip: 'Match the contract length to your tenancy, and agree who signs and how you split it.' },
+  voxi: { name: 'VOXI', group: 'shop', color: '#1E4ADD', when: 'Day 1', ref: '', site: 'https://www.voxi.co.uk',
+    offer: 'SIM-only plans with unlimited social media data', good: 'A UK number from day one, on the Vodafone network.', tip: 'Rolling 30-day plans with no contract, so you can cancel any time.' },
+  rakuten: { name: 'Rakuten', group: 'shop', color: '#C0152F', when: 'First month', ref: 'https://www.rakuten.co.uk/r/BUDIAR6?eeid=44971', site: 'https://www.rakuten.co.uk',
+    offer: 'Get £25 after you spend £50', good: 'Cashback at big UK shops when you buy bedding, kitchen things and clothes for your new room.', tip: 'The £50 excludes VAT and fees. Rakuten sets the terms.' },
+  joybuy: { name: 'Joybuy', group: 'shop', color: '#14174F', when: 'First month', ref: 'https://m.joybuy.co.uk/?isAutoOpen=true&des=activityMarketing&utm_source=invite&utm_medium=share_gift&ext_activityId=0705f68b10c84fd6a1f5807555cb0d46&ext_inviterPin=pxw1rb9m4ixtonmegfctd&siteId=1400&siteCode=UK-Site&inviteCode=7YVEQB&ext_inviteCode=7YVEQB', site: 'https://www.joybuy.co.uk',
+    offer: '£3 off your first order', code: '7YVEQB', good: 'Tech, home basics and food delivered to your door.', tip: 'Sign up through this link and enter the code at checkout.' },
+  tgtg: { name: 'Too Good To Go', group: 'food', color: '#14653F', when: 'Every week', ref: 'https://tgtg.onelink.me/OGjG/81zo8krf', site: 'https://www.toogoodtogo.com/en-gb',
+    offer: 'Surprise bags of unsold food at a big discount', good: 'Cheap meals and groceries from cafés, bakeries and supermarkets near you.', tip: 'Collect your bag in the time slot shown in the app.' },
+  ubereats: { name: 'Uber Eats', group: 'food', color: '#0B1440', when: '', ref: '', site: 'https://www.ubereats.com/gb', offer: '', good: 'Food and grocery delivery when you order as a customer.', tip: 'Look for first-order and student offers in the app.', warn: 'Do not sign up to deliver for Uber Eats. Couriers are self-employed, which a Student visa does not allow.' },
+  deliveroo: { name: 'Deliveroo', group: 'food', color: '#1F8A5B', when: '', ref: '', site: 'https://deliveroo.co.uk', offer: '', good: 'Food and grocery delivery when you order as a customer.', tip: 'Look for first-order and student offers in the app.', warn: 'Do not sign up as a Deliveroo rider. Riders are self-employed, which a Student visa does not allow.' }
 };
+const DEAL_CATS = [['all', 'All deals'], ['bank', 'Bank and money from home'], ['home', 'Room and bills'], ['shop', 'Phone and settling in'], ['food', 'Food and saving']];
 const API_BASE = 'https://jxnhqoplagcptgqtlkcs.supabase.co/functions/v1/uniwork/';
 const pLink = (id) => (PARTNERS[id] && (PARTNERS[id].ref || PARTNERS[id].site)) || '#';
 const partnerOf = (url) => Object.keys(PARTNERS).find((id) => pLink(id) === url) || (/globaltalent-education\.com/.test(url || '') ? 'gte' : null);
@@ -2273,7 +2316,7 @@ class Component extends DCLogic {
       tab: start === 'dashboard' ? 'dashboard' : (start === 'onboarding' ? 'wizard' : 'home'),
       step: 0, onboarded: start === 'dashboard',
       profile: { name: '', country: '', city: 'Manchester', level: 'degree', age: '21', week: 1, pre: false },
-      stageLast: {}, helpOpen: false, installOpen: false, installAll: false, installDismissed: false, canInstall: false, emailSaved: {}, emMsg: {}, emEmail: '', courseStart: '', flyDate: '', aiUses: 0, plus: false, alert: { role: '', city: 'Anywhere in the UK', on: false }, alertMsg: '', alertMsgColor: '#14174F', gradApply: '',
+      stageLast: {}, partnerCat: 'all', copied: '', helpOpen: false, installOpen: false, installAll: false, installDismissed: false, canInstall: false, emailSaved: {}, emMsg: {}, emEmail: '', courseStart: '', flyDate: '', aiUses: 0, plus: false, alert: { role: '', city: 'Anywhere in the UK', on: false }, alertMsg: '', alertMsgColor: '#14174F', gradApply: '',
       week: 1, done: {}, apps: {}, cvOpen: false,
       hours: 16, period: 'term', rate: 12.71, other: 300, rent: 650, food: 180, transport: 60, bills: 70, leisure: 80,
       q: '', city: 'All cities', cat: 'all', view: 'all', src: {}, shown: 20, shownKey: '', jobOpen: null,
@@ -2722,7 +2765,7 @@ class Component extends DCLogic {
     return [
       { title: 'Arrive and set up', items: [
         { id: 'w1a', title: 'Get a UK SIM and number', short: 'Employers and banks will call you.', body: 'A SIM-only plan works on day one. Put the number on every application.', chips: [['VOXI (partner)', pLink('voxi')]] },
-        { id: 'w1b', title: 'Open a UK bank account', short: 'Employers pay into a UK account.', body: 'App banks open in a day with passport and eVisa. High-street banks want a university letter.', chips: [['Revolut (partner)', pLink('revolut')], ['Lloyds (partner)', pLink('lloyds')], ['Wise for money from home (partner)', pLink('wise')]] },
+        { id: 'w1b', title: 'Open a UK bank account', short: 'Employers pay into a UK account.', body: 'App banks open in a day with passport and eVisa. High-street banks want a university letter.', chips: [['Revolut (partner)', pLink('revolut')], ['Monzo (partner)', pLink('monzo')], ['Lloyds: £30 sign-up (partner)', pLink('lloyds')], ['Wise for money from home (partner)', pLink('wise')]] },
         { id: 'w1c', title: 'Apply for a National Insurance number', short: 'Needed for tax and payroll.', body: 'You can start work before it arrives; tell your employer you applied.', terms: ['ni'], link: ['https://www.gov.uk/apply-national-insurance-number', 'Apply on GOV.UK'] }
       ], tips: [
         { t: 'GP registration is in Settle in, with the other health steps.', action: ['Open Settle in', () => this.setState({ tab: 'settle', onbLast: 'settle' })] }
@@ -3421,7 +3464,9 @@ class Component extends DCLogic {
       { t: 'Council Tax exemption', d: 'Full-time student households usually pay nothing, but you must send your council a student letter.', color: '#1F8A5B', url: 'https://www.gov.uk/council-tax/discounts-for-full-time-students', label: 'How to claim' },
       { t: 'Cheaper money transfers', d: 'Compare the total cost of each transfer from home; the difference adds up every month.', color: '#F8D93A', url: pUrl.wise, label: 'Wise (partner)', click: pClick.wise },
       { t: 'SIM-only phone plan', d: 'A rolling 30-day plan with unlimited social media data keeps your phone bill low and flexible.', color: '#8FA2FF', url: pUrl.voxi, label: 'VOXI (partner)', click: pClick.voxi },
-      { t: 'Bills included', d: 'One fixed monthly payment for rent and all bills makes your budget predictable.', color: '#14174F', url: pUrl.unihomes, label: 'UniHomes (partner)', click: pClick.unihomes },
+      { t: 'Book your room with cashback', d: 'Compare halls and private rooms before you fly, and get cashback when you book.', color: '#14174F', url: pUrl.uhomes, label: 'uhomes (partner)', click: pClick.uhomes },
+      { t: 'Cheap food near you', d: 'Surprise bags of unsold food from cafés, bakeries and supermarkets cost a fraction of the shop price.', color: '#1F8A5B', url: pUrl.tgtg, label: 'Too Good To Go (partner)', click: pClick.tgtg },
+      { t: 'Cashback on essentials', d: 'Get £25 after you spend £50 at big UK shops on bedding, kitchen things and clothes.', color: '#E0A100', url: pUrl.rakuten, label: 'Rakuten (partner)', click: pClick.rakuten },
       { t: 'Student discount schemes', d: 'TOTUM, UNiDAYS and Student Beans give money off food, clothes and tech. Food delivery apps run first-order offers; order as a customer only.', color: '#C0152F', url: 'https://www.totum.com', label: 'TOTUM' }
     ].map((t) => ({ ...t, hasLink: !!t.url, click: t.click || (() => {}) }));
     const youCosts = s.rent + s.food + s.transport + s.bills + s.leisure;
@@ -3432,8 +3477,21 @@ class Component extends DCLogic {
     ];
 
     // ===== Partners page =====
-    const partnerGroups = ['Money', 'Phone', 'Home', 'Food'].map((g) => ({ t: { Money: 'Banking and money from home', Phone: 'Phone', Home: 'Home, energy and broadband', Food: 'Food delivery (as a customer)' }[g],
-      items: Object.keys(PARTNERS).filter((id) => PARTNERS[id].group === g).map((id) => { const q = PARTNERS[id]; return { name: q.name, good: q.good, tip: q.tip, hasWarn: !!q.warn, warn: q.warn || '', url: pLink(id), click: pClick[id], cta: 'Go to ' + q.name, note: q.ref ? 'Opens our partner link.' : 'Referral link coming soon; this opens the official site.' }; }) }));
+    const dealCard = (id) => { const q = PARTNERS[id]; return { id, name: q.name, initial: q.name.charAt(0).toUpperCase(), color: q.color, offer: q.offer || '', hasOffer: !!q.offer, when: q.when || '', hasWhen: !!q.when,
+      good: q.good, tip: q.tip, hasWarn: !!q.warn, warn: q.warn || '', url: pLink(id), click: () => this.track('partner_click', { partner: id, page: 'deals' }),
+      tag: q.ref ? 'Referral link' : 'Official site', cta: q.ref ? (q.code ? 'Get £3 off' : 'Get the offer') : 'Visit ' + q.name,
+      hasCode: !!q.code, code: q.code || '', copyLabel: s.copied === id ? 'Copied' : 'Copy code',
+      copy: async () => { try { await navigator.clipboard.writeText(q.code); } catch (e) { /* clipboard blocked: the code is on screen */ } set({ copied: id }); } }; };
+    const DEAL_INTRO = { bank: 'Open a UK account in your first week. App banks are quickest; a high-street bank suits branch visits.', home: 'Book a room before you fly, then sort energy and wi-fi when you move in.', shop: 'A UK number on day one, then the things your room is missing.', food: 'Eat well for less. Order as a customer only.' };
+    const dealCat = DEAL_CATS.some((c) => c[0] === s.partnerCat) ? s.partnerCat : 'all';
+    const deals = {
+      pickTitle: p.pre ? 'Start with these before you fly' : 'Most useful in your first week',
+      picks: (p.pre ? ['wise', 'uhomes', 'revolut'] : ['monzo', 'revolut', 'rakuten']).map(dealCard),
+      cats: DEAL_CATS.map(([id, label]) => ({ label, n: id === 'all' ? Object.keys(PARTNERS).length : Object.keys(PARTNERS).filter((k) => PARTNERS[k].group === id).length,
+        on: dealCat === id ? 'true' : 'false', bg: dealCat === id ? '#1E4ADD' : '#FFFFFF', fg: dealCat === id ? '#FFFFFF' : '#1E4ADD', go: () => set({ partnerCat: id }) })),
+      groups: DEAL_CATS.filter(([id]) => id !== 'all' && (dealCat === 'all' || dealCat === id)).map(([id, label]) => ({ t: label, d: DEAL_INTRO[id],
+        items: Object.keys(PARTNERS).filter((k) => PARTNERS[k].group === id).map(dealCard) }))
+    };
 
     // ===== Mentorship =====
     const mtWait = !!country && !MENTOR_LIVE.includes(country);
@@ -3536,9 +3594,9 @@ class Component extends DCLogic {
       ['Your home', '#F8D93A', [
         ['s3a', 'Claim Council Tax exemption', 'Not automatic in private housing. Send your council a student letter.', 'https://www.gov.uk/council-tax/discounts-for-full-time-students', 'How to claim'],
         ['s3b', 'Check your deposit is protected', 'Your landlord must tell you the scheme within 30 days.', 'https://www.gov.uk/tenancy-deposit-protection', 'Deposit rules']],
-        [['Landlords in England check your right to rent with a share code.', 'https://www.gov.uk/prove-right-to-rent', 'Right to rent'], ['Want one payment for rent and all bills? Bills-included houses.', pLink('unihomes'), 'UniHomes (partner)'], ['Paying your own energy? A referral link gives you £50 credit.', pLink('octopus'), 'Octopus (partner)'], ['Broadband for the house: match the contract to your tenancy.', pLink('virgin'), 'Virgin Media (partner)'], ['TV Licence only if you watch live TV or BBC iPlayer.']]],
+        [['Landlords in England check your right to rent with a share code.', 'https://www.gov.uk/prove-right-to-rent', 'Right to rent'], ['Still looking for a room? Compare halls and private rooms, with cashback.', pLink('uhomes'), 'uhomes (partner)'], ['Paying your own energy? One of the cheaper suppliers, with referral credit.', pLink('octopus'), 'Octopus (partner)'], ['Kit out your room: £25 back after you spend £50.', pLink('rakuten'), 'Rakuten (partner)'], ['Broadband for the house: match the contract to your tenancy.', pLink('virgin'), 'Virgin Media (partner)'], ['TV Licence only if you watch live TV or BBC iPlayer.']]],
       ['Money', '#14174F', [],
-        [['Compare fees before sending money from home; they vary a lot.', pLink('wise'), 'Wise (partner)'], ['App account for your first week.', pLink('revolut'), 'Revolut (partner)'], ['Prefer a branch?', pLink('lloyds'), 'Lloyds (partner)'], ['Ordering food? Never sign up as a rider: couriers are self-employed.'], ['TOTUM, UNiDAYS and Student Beans give student discounts.']]],
+        [['Compare fees before sending money from home; they vary a lot.', pLink('wise'), 'Wise (partner)'], ['App account for your first week.', pLink('revolut'), 'Revolut (partner)'], ['Another app bank, good for splitting bills.', pLink('monzo'), 'Monzo (partner)'], ['Prefer a branch? £30 when you sign up.', pLink('lloyds'), 'Lloyds (partner)'], ['Cheap food: surprise bags of unsold food near you.', pLink('tgtg'), 'Too Good To Go (partner)'], ['Ordering food? Never sign up as a rider: couriers are self-employed.'], ['TOTUM, UNiDAYS and Student Beans give student discounts.']]],
       ['Getting around', '#8FA2FF', [],
         [['16-25 Railcard: a third off trains, also for full-time students over 25.', 'https://www.16-25railcard.co.uk', 'Railcard'],
          p.city === 'London' ? ['18+ Student Oyster: 30% off Travelcards and bus passes.', 'https://tfl.gov.uk/fares/free-and-discounted-travel', 'TfL discounts'] : ['Ask about a student bus pass in ' + p.city + '.'],
@@ -3604,7 +3662,7 @@ class Component extends DCLogic {
       ['One to two months before you fly', 'Once your visa is granted: where you will live and how you will manage the first weeks.', [
         ['pf7', 'Somewhere to live', 'Have at least your first nights booked and the full address written down.', [
           'University halls or a private room',
-          'Never pay a deposit for a place that you, or someone you trust, has not seen'], [[pLink('unihomes'), 'UniHomes (partner)']]],
+          'Never pay a deposit for a place that you, or someone you trust, has not seen'], [[pLink('uhomes'), 'uhomes: book with cashback (partner)']]],
         ['pf8', 'Flight and university registration', 'Book for a date your eVisa allows.', [
           'You can arrive up to 1 month before your course starts, or 1 week for a course of 6 months or less',
           'Finish your university’s online pre-enrolment and note when you enrol in person',
@@ -3612,7 +3670,7 @@ class Component extends DCLogic {
         ['pf9', 'Money, phone and insurance for the first weeks', 'A UK bank account can take a week or more to open.', [
           'A card that works abroad and some cash; send larger sums by transfer',
           'An unlocked phone and a UK SIM or eSIM; keep your home number for bank codes',
-          'Travel insurance for the journey and your bags: the health surcharge covers NHS care only once you arrive'], [[pLink('wise'), 'Wise (partner)'], [pLink('voxi'), 'VOXI (partner)']]],
+          'Travel insurance for the journey and your bags: the health surcharge covers NHS care only once you arrive'], [[pLink('wise'), 'Wise (partner)'], [pLink('revolut'), 'Revolut (partner)'], [pLink('monzo'), 'Monzo (partner)'], [pLink('voxi'), 'VOXI (partner)']]],
         ['pf10', 'Health', 'Arrive with what you need for your first month.', [
           'A doctor’s letter for any regular medicine, kept in its original packaging',
           'Vaccinations your university recommends; many ask for MenACWY and MMR']]]],
@@ -3627,7 +3685,7 @@ class Component extends DCLogic {
           'Original certificates and transcripts, with English translations, for enrolment',
           'A Type G plug adapter and a warm waterproof coat',
           'Leave meat, dairy and most fresh food at home; packaged snacks and spices are generally fine',
-          'Your address, the international office’s number and an emergency contact saved offline; tell your bank you are travelling'], [[G + 'bringing-food-into-great-britain', 'Food rules']]],
+          'Your address, the international office’s number and an emergency contact saved offline; tell your bank you are travelling'], [[G + 'bringing-food-into-great-britain', 'Food rules'], [pLink('rakuten'), 'Rakuten: £25 back on essentials (partner)'], [pLink('joybuy'), 'Joybuy: £3 off (partner)']]],
         ['pf13', 'At the border and after', 'A routine check for every international student.', [
           'Use the eGates if you are eligible, or see a Border Force officer. You may be asked what you will study, where you will live and how you will pay: answer simply',
           'Keep your boarding pass: it proves the date you arrived',
@@ -3686,8 +3744,8 @@ class Component extends DCLogic {
 
     // Quick actions on My plan
     const quick = (p.pre
-      ? [['Before you fly', go.predep], ['Money from home', () => set({ tab: 'money', mn: 'home' })], ['Find a mentor', go.mentor], ['Get help', () => set({ helpOpen: true })]]
-      : [['Log a shift', go.log], ['Find part-time jobs', go.jobs], ['My budget', go.budget], ['Graduate route pack', agGo.pack]])
+      ? [['Before you fly', go.predep], ['Money from home', () => set({ tab: 'money', mn: 'home' })], ['Deals for your move', go.partners], ['Find a mentor', go.mentor], ['Get help', () => set({ helpOpen: true })]]
+      : [['Log a shift', go.log], ['Find part-time jobs', go.jobs], ['My budget', go.budget], ['Student deals', go.partners], ['Graduate route pack', agGo.pack]])
       .map(([label, fn], i) => ({ label, go: fn, bg: i === 0 ? '#F8D93A' : 'transparent', fg: i === 0 ? '#0B1440' : '#FFFFFF' }));
 
     // Add to home screen
@@ -3742,7 +3800,7 @@ class Component extends DCLogic {
     const pageStatus = {
       predep: pd.progress, settle: settle.short, roadmap: ticked + ' of ' + total + ' done', rules: limit + ' hours a week in term time',
       jobs: SRC.length + ' visa-checked jobs', hours: wkNow ? 'This week: ' + wkNow.total + ' of ' + (wkNow.vac ? 'no limit' : limit + ' h') : 'Shift log and payslip check', cv: 'UK format with a screening check',
-      money: (balance < 0 ? 'Short ' : 'Left over ') + GBP(Math.abs(balance)) + ' a month', partners: Object.keys(PARTNERS).length + ' deals for students',
+      money: (balance < 0 ? 'Short ' : 'Left over ') + GBP(Math.abs(balance)) + ' a month', partners: Object.keys(PARTNERS).filter((k) => PARTNERS[k].ref).length + ' student deals',
       sponsors: grad.length, mentor: '£15 for 45 minutes'
     };
     const stageTabs = stageDef ? stageDef[2].map(([id, label]) => ({ label, status: pageStatus[id], go: go[id], current: s.tab === id ? 'page' : undefined,
@@ -3946,7 +4004,7 @@ class Component extends DCLogic {
         { t: 'Graduate visa fund', v: GBP(gvCost), bg: 'rgba(255,255,255,.14)', fg: '#FFFFFF' }],
       funds: s.funds, fundsSet, pfWhere, pfWhen, pf, fx, fxSet, fxCur, fxPickCur: (e) => set({ fx: { ...this.state.fx, cur: e.target.value, rate: '' } }), goal: { saved: s.goalSaved }, goalSet: (e) => set({ goalSaved: e.target.value }), gv,
       billFields, bills, pUrl, pClick, saveTips, compare,
-      isPartners: s.tab === 'partners', partnerGroups,
+      isPartners: s.tab === 'partners', deals,
       isMentor: s.tab === 'mentor', mt: s.mt, mtSet, mentorSubmit, mtMsg: s.mtMsg, mtMsgColor: s.mtMsgColor,
       mentorStart: () => { try { const el = document.getElementById('mentor-form'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { /* ignore */ } },
       mentorWhy: [
