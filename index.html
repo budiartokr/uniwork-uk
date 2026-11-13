@@ -71,6 +71,7 @@ textarea:focus{border-color:#F8D93A;outline:none}
 @media print{header,nav,footer,.offerbar,.bottomnav,.noprint{display:none !important}.root{padding-bottom:0 !important}}
 @media (max-width:900px){.topnav{display:none !important}.bottomnav{display:flex !important}.root{padding-bottom:132px}.hidesm{display:none !important}.offerbar{bottom:62px}.offertext{display:none !important}}
 @media (prefers-reduced-motion:reduce){.btn,.lift,.onbtab,.jtab{transition:none}.btn:hover,.lift:hover{transform:none}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 <style>@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:400;src:url(fonts/geist-latin-400-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:500;src:url(fonts/geist-latin-500-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:600;src:url(fonts/geist-latin-600-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:700;src:url(fonts/geist-latin-700-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:800;src:url(fonts/geist-latin-800-normal.woff2) format('woff2')}</style>
 <style>@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:400;src:url(fonts/geist-latin-400-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:500;src:url(fonts/geist-latin-500-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:600;src:url(fonts/geist-latin-600-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:700;src:url(fonts/geist-latin-700-normal.woff2) format('woff2')}@font-face{font-family:Geist;font-style:normal;font-display:swap;font-weight:800;src:url(fonts/geist-latin-800-normal.woff2) format('woff2')}</style>
@@ -1034,7 +1035,7 @@ UniWork UK
 <p style="margin: 14px 0 0; max-width: 44em; font-size: 18px">Part-time work during your course needs no sponsor. Staying after your degree usually does. Work out your Graduate visa clock, learn the Skilled Worker rules in plain English, and check any employer and offer before you say yes.</p>
 <div style="margin-top: 16px; max-width: 46em; background: rgba(255,255,255,.12); border-radius: 12px; padding: 12px 16px"><p style="margin: 0; font-size: 14px">UniWork gives general information, not immigration advice. Immigration advice in the UK is regulated by the <a style="color: #F8D93A" href="https://www.gov.uk/government/organisations/immigration-advice-authority" target="_blank" rel="noopener">Immigration Advice Authority</a>. For your own case, speak to your university’s international student adviser or a <a style="color: #F8D93A" href="https://www.gov.uk/find-an-immigration-adviser" target="_blank" rel="noopener">registered immigration adviser</a>.</p></div>
 <nav aria-label="After graduation sections" class="onbstrip" style="margin-top: 26px; gap: 4px">
-<template data-sc="for" list="{{agTabs}}" as="t" hint-placeholder-count="7"><button onClick="{{t.go}}" aria-current="{{t.current}}" style="flex: none; min-height: 52px; padding: 0 18px; border: none; border-radius: 12px 12px 0 0; background: {{t.bg}}; color: {{t.fg}}; font-size: 15px; font-weight: 700">{{t.label}}</button></template>
+<template data-sc="for" list="{{agTabs}}" as="t" hint-placeholder-count="8"><button onClick="{{t.go}}" aria-current="{{t.current}}" style="flex: none; min-height: 52px; padding: 0 18px; border: none; border-radius: 12px 12px 0 0; background: {{t.bg}}; color: {{t.fg}}; font-size: 15px; font-weight: 700">{{t.label}}</button></template>
 </nav>
 </div>
 </section>
@@ -1203,7 +1204,7 @@ UniWork UK
 
 <section aria-labelledby="ov-h" style="margin-top: 28px">
 <h2 id="ov-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; font-size: clamp(26px, 3vw, 36px)">Other ways to stay and work</h2>
-<p style="margin: 8px 0 16px; max-width: 44em">Not every route needs an employer. Compare them before you plan your job search.</p>
+<p style="margin: 8px 0 16px; max-width: 44em">Not every route needs an employer. Compare them before you plan your job search. <button onClick="{{agGo.gt}}" style="padding: 0; border: none; background: none; color: #1E4ADD; font: inherit; font-weight: 700; text-decoration: underline">Read the full Global Talent guide</button></p>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 12px">
 <template data-sc="for" list="{{visaRoutes}}" as="v" hint-placeholder-count="6"><article style="background: #FFFFFF; border: 1px solid #E3E7F5; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 8px">
 <h3 style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 19px">{{v.t}}</h3>
@@ -1214,6 +1215,96 @@ UniWork UK
 </article></template>
 </div>
 </section>
+</template>
+
+<template data-sc="if" value="{{agGt}}" hint-placeholder-val="{{false}}">
+<section aria-labelledby="gt-h" style="background: #14174F; color: #FFFFFF; border-radius: 18px; padding: clamp(20px, 3vw, 36px)">
+<p style="margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #F8D93A">No employer sponsor needed</p>
+<h2 id="gt-h" style="margin: 8px 0 0; font-family: Geist, sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; font-size: clamp(28px, 3.4vw, 44px)">Global Talent visa: stay in the UK on the strength of your work</h2>
+<p style="margin: 12px 0 0; max-width: 46em; font-size: 17px">For leaders and future leaders in <strong>academia or research, digital technology, arts and culture, and design</strong>. You do not need a job offer or a minimum salary, and you can work for anyone. The hard part is the <strong>endorsement</strong>: an expert body must agree you are exceptional.</p>
+<ul style="list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px">
+<li style="background: rgba(255,255,255,.08); border-radius: 12px; padding: 14px"><strong style="display: block; font-family: Geist, sans-serif; font-size: 24px; font-weight: 800; color: #F8D93A">£766</strong><span style="font-size: 14px">total fee (£561 endorsement + £205 visa)</span></li>
+<li style="background: rgba(255,255,255,.08); border-radius: 12px; padding: 14px"><strong style="display: block; font-family: Geist, sans-serif; font-size: 24px; font-weight: 800; color: #F8D93A">Up to 5 years</strong><span style="font-size: 14px">per visa; extend as often as you need</span></li>
+<li style="background: rgba(255,255,255,.08); border-radius: 12px; padding: 14px"><strong style="display: block; font-family: Geist, sans-serif; font-size: 24px; font-weight: 800; color: #F8D93A">3 or 5 years</strong><span style="font-size: 14px">to settlement, depending on field and level</span></li>
+<li style="background: rgba(255,255,255,.08); border-radius: 12px; padding: 14px"><strong style="display: block; font-family: Geist, sans-serif; font-size: 24px; font-weight: 800; color: #F8D93A">3 / 8 weeks</strong><span style="font-size: 14px">usual visa decision outside / inside the UK</span></li>
+</ul>
+</section>
+
+<section aria-labelledby="gtway-h" style="margin-top: 24px">
+<h2 id="gtway-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; font-size: clamp(26px, 3vw, 36px)">Three ways in</h2>
+<p style="margin: 8px 0 16px; max-width: 46em">Everyone must be 18 or over. Most graduates apply for endorsement as <strong>Exceptional Promise</strong>.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px">
+<article style="background: #FFFFFF; border: 1px solid #E3E7F5; border-top: 5px solid #F8D93A; border-radius: 14px; padding: 18px"><h3 style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 19px">Exceptional Promise</h3><p style="margin: 6px 0 0; font-size: 13px; font-weight: 700; color: #1E4ADD">Potential leader · early career</p><p style="margin: 8px 0 0; font-size: 15px">You are already recognised as a rising talent, usually within the last 5 years. In tech and arts, settlement comes after 5 years.</p></article>
+<article style="background: #FFFFFF; border: 1px solid #E3E7F5; border-top: 5px solid #1E4ADD; border-radius: 14px; padding: 18px"><h3 style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 19px">Exceptional Talent</h3><p style="margin: 6px 0 0; font-size: 13px; font-weight: 700; color: #1E4ADD">Established leader</p><p style="margin: 8px 0 0; font-size: 15px">You are already a recognised leader in your field. Settlement can come after 3 years.</p></article>
+<article style="background: #FFFFFF; border: 1px solid #E3E7F5; border-top: 5px solid #14174F; border-radius: 14px; padding: 18px"><h3 style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 19px">Prestigious prize</h3><p style="margin: 6px 0 0; font-size: 13px; font-weight: 700; color: #1E4ADD">No endorsement needed</p><p style="margin: 8px 0 0; font-size: 15px">If you personally won a prize on the Home Office list (for example a Nobel Prize or Turing Award), you skip endorsement and pay the full £766 at the visa stage. Other prizes from the same organisers do not count.</p></article>
+</div>
+</section>
+
+<section aria-labelledby="gtfield-h" style="margin-top: 28px; background: #FFFFFF; border: 3px solid #F8D93A; border-radius: 18px; padding: clamp(20px, 3vw, 36px)">
+<h2 id="gtfield-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; font-size: clamp(26px, 3vw, 36px)">Your field, your endorsing body</h2>
+<p style="margin: 8px 0 16px; max-width: 46em">Pick your field to see who decides, the fastest path and what to collect.</p>
+<div role="group" aria-label="Choose your field" style="display: flex; flex-wrap: wrap; gap: 8px">
+<template data-sc="for" list="{{gtFields}}" as="f" hint-placeholder-count="4"><button onClick="{{f.pick}}" aria-pressed="{{f.current}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; border: 2px solid #14174F; background: {{f.bg}}; color: {{f.fg}}; font-size: 15px; font-weight: 700">{{f.label}}</button></template>
+</div>
+<div aria-live="polite" style="margin-top: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<div><h3 style="margin: 0; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #4A4F86">Who endorses you</h3><p style="margin: 6px 0 0; font-weight: 700">{{gtF.body}}</p>
+<h3 style="margin: 16px 0 0; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #4A4F86">Fastest path</h3><p style="margin: 6px 0 0; font-size: 15px">{{gtF.fast}}</p>
+<h3 style="margin: 16px 0 0; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #4A4F86">Endorsement time</h3><p style="margin: 6px 0 0; font-size: 15px">{{gtF.time}}</p></div>
+<div><h3 style="margin: 0; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #4A4F86">What to collect</h3><ul style="margin: 6px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 15px"><template data-sc="for" list="{{gtF.evidence}}" as="e" hint-placeholder-count="3"><li>{{e}}</li></template></ul>
+<h3 style="margin: 16px 0 0; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #4A4F86">Settlement</h3><p style="margin: 6px 0 0; font-size: 15px">{{gtF.settle}}</p>
+<p style="margin: 12px 0 0; background: #F5F6FB; border-radius: 10px; padding: 10px 12px; font-size: 15px"><strong style="font-weight: 700">Best fit:</strong> {{gtF.who}}</p>
+<a href="{{gtF.url}}" target="_blank" rel="noopener" style="display: inline-block; margin-top: 10px; font-weight: 700">{{gtF.link}}</a></div>
+</div>
+</section>
+
+<section aria-labelledby="gtsteps-h" style="margin-top: 28px; background: #14174F; color: #FFFFFF; border-radius: 18px; padding: clamp(20px, 3vw, 36px)">
+<h2 id="gtsteps-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; font-size: clamp(26px, 3vw, 36px); color: #F8D93A">How to apply, step by step</h2>
+<ol style="margin: 18px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px">
+<template data-sc="for" list="{{gtSteps}}" as="st" hint-placeholder-count="6"><li style="display: flex; gap: 12px; background: rgba(255,255,255,.07); border-radius: 12px; padding: 14px"><span aria-hidden="true" style="flex: none; width: 34px; height: 34px; border-radius: 50%; background: #F8D93A; color: #0B1440; display: flex; align-items: center; justify-content: center; font-weight: 800">{{st.n}}</span><span><strong style="display: block; font-weight: 700">{{st.t}}</strong><span style="font-size: 15px">{{st.d}}</span></span></li></template>
+</ol>
+</section>
+
+<div style="margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px">
+<section aria-labelledby="gtcost-h" style="background: #FFFFFF; border: 1px solid #E3E7F5; border-radius: 16px; padding: 20px">
+<h2 id="gtcost-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 24px">What it costs</h2>
+<table style="width: 100%; margin-top: 12px; border-collapse: collapse; font-size: 15px">
+<tbody>
+<template data-sc="for" list="{{gtCosts}}" as="c" hint-placeholder-count="6"><tr style="border-bottom: 1px solid #E3E7F5"><th scope="row" style="text-align: left; font-weight: {{c.w}}; padding: 9px 8px 9px 0">{{c.t}}</th><td style="text-align: right; font-weight: {{c.w}}; padding: 9px 0; white-space: nowrap">{{c.v}}</td></tr></template>
+</tbody>
+</table>
+<p style="margin: 10px 0 0; font-size: 14px; color: #4A4F86">Example: one person, 3-year visa = £766 + £3,105 health surcharge = <strong style="color: #14174F">£3,871</strong>. You may be able to pay extra for a faster decision.</p>
+</section>
+<section aria-labelledby="gtcan-h" style="background: #FFFFFF; border: 1px solid #E3E7F5; border-radius: 16px; padding: 20px">
+<h2 id="gtcan-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 24px">What you can and cannot do</h2>
+<ul style="margin: 12px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 15px">
+<template data-sc="for" list="{{gtCan}}" as="c" hint-placeholder-count="8"><li style="display: flex; gap: 10px"><span aria-hidden="true" style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: {{c.bg}}; color: {{c.fg}}; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800">{{c.i}}</span><span><span class="sr-only">{{c.sr}}</span>{{c.t}}</span></li></template>
+</ul>
+</section>
+</div>
+
+<section aria-labelledby="gtgrad-h" style="margin-top: 28px">
+<h2 id="gtgrad-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; font-size: clamp(26px, 3vw, 36px)">If you are on a Student or Graduate visa</h2>
+<div style="margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px">
+<template data-sc="for" list="{{gtGrad}}" as="g" hint-placeholder-count="4"><article style="background: #FFFFFF; border: 1px solid #E3E7F5; border-left: 5px solid {{g.c}}; border-radius: 14px; padding: 16px"><h3 style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 18px">{{g.t}}</h3><p style="margin: 6px 0 0; font-size: 15px">{{g.d}}</p></article></template>
+</div>
+</section>
+
+<section aria-labelledby="gtmiss-h" style="margin-top: 28px; background: #FFF6D6; border-radius: 16px; padding: 20px">
+<h2 id="gtmiss-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 24px">Why applications get refused</h2>
+<ul style="margin: 12px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; font-size: 15px"><template data-sc="for" list="{{gtMistakes}}" as="m" hint-placeholder-count="5"><li>{{m}}</li></template></ul>
+<p style="margin: 12px 0 0; font-size: 15px"><strong style="font-weight: 700">Refused?</strong> You can ask for an endorsement review if you think the rules were not followed. Not ready yet? Compare the <button onClick="{{agGo.sw}}" style="padding: 0; border: none; background: none; color: #1E4ADD; font: inherit; font-weight: 700; text-decoration: underline">Skilled Worker route</button>.</p>
+</section>
+
+<section aria-labelledby="gtset-h" style="margin-top: 28px; background: #EEF1FD; border-radius: 16px; padding: 20px">
+<h2 id="gtset-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 24px">Settlement rules are changing</h2>
+<p style="margin: 10px 0 0; max-width: 52em; font-size: 15px">On 2 November 2026 the government confirmed its “earned settlement” plan. Most work routes move towards 10 years, but eligible Global Talent holders keep a <strong>3-year path</strong>, with new mandatory requirements. New rules are expected in December 2026 and to apply during 2027. Check GOV.UK before you plan your settlement date.</p>
+</section>
+
+<section aria-labelledby="gthelp-h" style="margin-top: 28px; background: #14174F; color: #FFFFFF; border-radius: 18px; padding: clamp(20px, 3vw, 32px); display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 360px"><h2 id="gthelp-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 26px; color: #F8D93A">Not sure your evidence is strong enough?</h2><p style="margin: 8px 0 0; font-size: 15px">Talk it through with a Global Talent Education mentor before you pay the £561 endorsement fee.</p></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px"><button class="btn" onClick="{{openHelp}}" style="background: #F8D93A; color: #0B1440">Get help</button><a class="btn outline" href="https://www.gov.uk/global-talent" target="_blank" rel="noopener" style="background: #FFFFFF; color: #14174F">Global Talent on GOV.UK</a></div>
+</section>
+<p style="margin: 14px 0 0; font-size: 13px; color: #4A4F86">Checked against GOV.UK on 13 November 2026. UniWork gives general information, not immigration advice. For advice on your case, speak to a regulated immigration adviser.</p>
 </template>
 
 <template data-sc="if" value="{{agCompany}}" hint-placeholder-val="{{false}}">
@@ -2312,7 +2403,37 @@ const ATAS_EXEMPT = ['Australia', 'Canada', 'France', 'Germany', 'Greece', 'Ital
 // One link per page: #name in the address (claude.ai keeps a plain #name only)
 const ROUTES = { home: '', dashboard: 'my-plan', wizard: 'setup', predep: 'before-you-fly', settle: 'settle-in', roadmap: 'first-four-weeks', rules: 'visa-rules',
   jobs: 'part-time-jobs', hours: 'hours-and-pay', cv: 'cv-builder', money: 'budget', partners: 'partner-deals', sponsors: 'after-graduation', mentor: 'mentorship', account: 'account', employers: 'for-employers' };
-const AG_ROUTES = { pack: 'graduate-route-pack', alerts: 'sponsor-job-alerts', sw: 'skilled-worker-rules', company: 'company-check', offer: 'offer-check', salary: 'salary-check' };
+const GT_FIELDS = [
+  { id: 'research', label: 'Academia or research', body: 'Royal Society (science and medicine), British Academy (humanities and social science), Royal Academy of Engineering (engineering) or UK Research and Innovation (UKRI)',
+    fast: 'Fast track if you have an eligible academic or research job offer at a UK university or research institute, an approved individual fellowship from the last 5 years, or a job named in a UKRI-approved grant. Otherwise: peer review.',
+    time: 'About 2 weeks on a fast track, about 5 weeks for peer review',
+    evidence: ['Job offer letter and job description (appointment route)', 'Fellowship award letter (fellowship route)', 'Peer review: CV, publications, letters from experts, proof of recognition'],
+    settle: 'Settlement after 3 years for Talent and Promise. Time doing research abroad can count.',
+    url: 'https://www.gov.uk/global-talent-researcher-academic', link: 'Academia and research on GOV.UK',
+    who: 'PhD graduates and researchers with a UK post-doc, lecturer or research job offer have the clearest path.' },
+  { id: 'tech', label: 'Digital technology', body: 'Tech Nation',
+    fast: 'No fast track. You apply as a technical person (for example engineer, data scientist, developer) or a business person (for example product, sales, investment) in a product-led digital technology company.',
+    time: 'Endorsement decisions usually take a few weeks. Check the latest guidance before you plan.',
+    evidence: ['CV, up to 3 pages of A4', '3 letters of recommendation from recognised experts who know your work', 'Up to 10 pieces of evidence (3 pages each): 1 mandatory criterion plus 2 optional ones', 'Proof of your link to a tech business if you founded or led one in the last 5 years'],
+    settle: 'Settlement after 3 years (Talent) or 5 years (Promise).',
+    url: 'https://www.gov.uk/global-talent-digital-technology', link: 'Digital technology on GOV.UK',
+    who: 'Promise suits people early in their career (usually under 5 years) who are already recognised outside their day job: open source, talks, awards, a product with real users.' },
+  { id: 'arts', label: 'Arts and culture', body: 'Arts Council England. Specialist partners assess film and TV (Pact), architecture (RIBA) and fashion (British Fashion Council).',
+    fast: 'No fast track. You show your work is recognised internationally, through media coverage, awards, shows, festivals or major commissions.',
+    time: 'Usually several weeks. Check the current guidance before you plan.',
+    evidence: ['CV of your career and achievements', 'Up to 10 pieces of evidence of international recognition (press, awards, exhibitions, performances)', 'Letters of support from established people or organisations in your field'],
+    settle: 'Settlement after 3 years (Talent) or 5 years (Promise).',
+    url: 'https://www.gov.uk/global-talent-arts-culture', link: 'Arts and culture on GOV.UK',
+    who: 'Strong for performers, artists, writers, film makers and architects with work shown or covered in more than one country.' },
+  { id: 'design', label: 'Design (new in 2026)', body: 'Arts Council England, with applications assessed by the Design Business Association (DBA). Open since 1 July 2026.',
+    fast: 'No fast track. For product, UX, industrial, interior, graphic and other commercial designers who did not fit the old arts criteria. Digital design may fit Tech Nation better.',
+    time: 'New route: check the current guidance for decision times.',
+    evidence: ['CV showing a current, regular professional record', 'Independent letters of support from the design sector', 'Selected evidence of recognition: awards, press, notable clients or launched products'],
+    settle: 'Settlement after 3 years (Talent) or 5 years (Promise).',
+    url: 'https://www.gov.uk/global-talent', link: 'Global Talent on GOV.UK',
+    who: 'Designers with shipped work and recognition beyond one employer.' }
+];
+const AG_ROUTES = { pack: 'graduate-route-pack', alerts: 'sponsor-job-alerts', sw: 'skilled-worker-rules', gt: 'global-talent-visa', company: 'company-check', offer: 'offer-check', salary: 'salary-check' };
 const longDate = (d) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 const AI_FREE = 2;
 const homeLang = (country) => { const c = COUNTRIES.find((x) => x[0] === country); return c ? c[2] : ''; };
@@ -3363,7 +3484,7 @@ class Component extends DCLogic {
 
 
     // After graduation
-    const agDefs = [['timeline', 'Visa timeline'], ['pack', 'Graduate route pack'], ['alerts', 'Sponsor job alerts'], ['sw', 'Skilled Worker rules'], ['company', 'Company check'], ['offer', 'Offer check'], ['salary', 'Salary check']];
+    const agDefs = [['timeline', 'Visa timeline'], ['pack', 'Graduate route pack'], ['alerts', 'Sponsor job alerts'], ['sw', 'Skilled Worker rules'], ['gt', 'Global Talent visa'], ['company', 'Company check'], ['offer', 'Offer check'], ['salary', 'Salary check']];
     const agGo = {};
     agDefs.forEach(([id]) => { agGo[id] = () => { set({ tab: 'sponsors', ag: id }); if (id === 'company' || id === 'offer') this.loadSponsors(); try { window.scrollTo(0, 0); setTimeout(() => { const el = document.querySelector('nav[aria-label="After graduation sections"] [aria-current="page"]'); if (el && el.scrollIntoView) el.scrollIntoView({ block: 'nearest', inline: 'center' }); }, 0); } catch (e) { /* ignore */ } }; });
     const agTabs = agDefs.map(([id, label]) => ({ label, go: agGo[id], current: s.ag === id ? 'page' : undefined, bg: s.ag === id ? '#F5F6FB' : 'rgba(255,255,255,.12)', fg: s.ag === id ? '#14174F' : '#FFFFFF' }));
@@ -4132,7 +4253,7 @@ class Component extends DCLogic {
       loadStats: (e) => { if (e && e.preventDefault) e.preventDefault(); this.loadStatsNow(); }, stats,
       offerMsg: s.offerMsg,
       checkoutClick: () => { this.track('checkout_click'); set({ offerMsg: s.accSaved ? 'Thanks! Checkout isn’t open yet. We’ll email you when full access goes live.' : 'Thanks! Checkout isn’t open yet. Create a free account and we’ll email you when it goes live.' }); },
-      agTabs, agGo, agTimeline: s.ag === 'timeline', agSw: s.ag === 'sw', agCompany: s.ag === 'company', agOffer: s.ag === 'offer', agSalary: s.ag === 'salary',
+      agTabs, agGo, agTimeline: s.ag === 'timeline', agSw: s.ag === 'sw', agGt: s.ag === 'gt', gtField: s.gtField || 'research', gtFields: GT_FIELDS.map((f) => ({ id: f.id, label: f.label, current: (s.gtField || 'research') === f.id ? 'true' : 'false', bg: (s.gtField || 'research') === f.id ? '#14174F' : '#FFFFFF', fg: (s.gtField || 'research') === f.id ? '#FFFFFF' : '#14174F', pick: () => set({ gtField: f.id }) })), gtF: GT_FIELDS.find((f) => f.id === (s.gtField || 'research')), agCompany: s.ag === 'company', agOffer: s.ag === 'offer', agSalary: s.ag === 'salary',
       grad2026: new Date() < new Date(2027, 0, 1) && !s.gradPhd,
       gradFacts: [
         { t: 'Apply from the UK, before your Student visa expires', d: 'You can apply once your university reports that you have completed the course.' },
@@ -4164,6 +4285,45 @@ class Component extends DCLogic {
         { n: '4', t: 'Get the offer and your certificate', d: 'The employer confirms the occupation code and salary, then assigns your Certificate of Sponsorship.' },
         { n: '5', t: 'Apply online within 3 months', d: 'Pay the fee and health surcharge, prove your identity and English. Students switching in the UK don’t trigger the Immigration Skills Charge for the employer.' },
         { n: '6', t: 'Switch before your visa ends', d: 'From a Student visa, your job must start after your course ends. From a Graduate visa, apply before it expires.' }
+      ],
+      gtSteps: [
+        { n: '1', t: 'Pick your field and level', d: 'Choose the endorsing body that matches your work, then Talent or Promise. The wrong field is a common reason for refusal.' },
+        { n: '2', t: 'Build your evidence', d: 'CV, letters from people who know your work, and recent proof of recognition outside your own job. Quality beats quantity.' },
+        { n: '3', t: 'Apply for endorsement (Stage 1)', d: 'One online form on GOV.UK. Pay £561. The Home Office sends it to your endorsing body.' },
+        { n: '4', t: 'Apply for the visa (Stage 2)', d: 'Within 3 months of your endorsement. Pay £205 plus the health surcharge. You can also apply for both stages together.' },
+        { n: '5', t: 'Prove your identity', d: 'You will be told if you need an appointment. Decision usually in 3 weeks outside the UK or 8 weeks inside.' },
+        { n: '6', t: 'Extend or settle', d: 'Extend for 1 to 5 years at a time, or apply to settle after 3 or 5 years if you meet the rules.' }
+      ],
+      gtCosts: [
+        { t: 'Endorsement (Stage 1)', v: '£561', w: 400 },
+        { t: 'Visa (Stage 2)', v: '£205', w: 400 },
+        { t: 'Total application fee', v: '£766', w: 700 },
+        { t: 'Prize winners (visa only)', v: '£766', w: 400 },
+        { t: 'Each partner or child', v: '£766', w: 400 },
+        { t: 'Health surcharge, per person per year', v: '£1,035', w: 700 }
+      ],
+      gtCan: [
+        { i: '✓', sr: 'You can: ', bg: '#DDF6E8', fg: '#14653F', t: 'Work for any employer, be self-employed or run a company' },
+        { i: '✓', sr: 'You can: ', bg: '#DDF6E8', fg: '#14653F', t: 'Change or stop your job without telling the Home Office' },
+        { i: '✓', sr: 'You can: ', bg: '#DDF6E8', fg: '#14653F', t: 'Choose how long your visa lasts, up to 5 years' },
+        { i: '✓', sr: 'You can: ', bg: '#DDF6E8', fg: '#14653F', t: 'Bring your partner and children, who can also work' },
+        { i: '✓', sr: 'You can: ', bg: '#DDF6E8', fg: '#14653F', t: 'Travel abroad and come back' },
+        { i: '✕', sr: 'You cannot: ', bg: '#FDE2E5', fg: '#C0152F', t: 'Work as a professional sportsperson or sports coach' },
+        { i: '✕', sr: 'You cannot: ', bg: '#FDE2E5', fg: '#C0152F', t: 'Claim most public funds (benefits)' },
+        { i: '✕', sr: 'You cannot: ', bg: '#FDE2E5', fg: '#C0152F', t: 'Switch in from a visitor, short-term student or seasonal worker visa' }
+      ],
+      gtGrad: [
+        { c: '#14653F', t: 'You can switch inside the UK', d: 'Student and Graduate visa holders can switch without leaving. Apply before your current visa ends; you can stay while you wait for the decision.' },
+        { c: '#1E4ADD', t: 'Start early in your Graduate visa', d: 'The Graduate visa drops to 18 months for applications from 1 January 2027. Use the first months to collect recognition, not the last.' },
+        { c: '#F2A900', t: 'Your degree is not the evidence', d: 'Grades and coursework rarely count. Endorsers want recognition from others: publications, talks, awards, users, press or open-source impact.' },
+        { c: '#C0152F', t: 'PhD and research staff: use the fast track', d: 'A UK research or academic job offer, an approved fellowship or a UKRI-approved grant can get you endorsed in about 2 weeks.' }
+      ],
+      gtMistakes: [
+        'Applying to the wrong endorsing body for your work',
+        'Letters from people who do not know your work well, or that repeat the same points',
+        'Evidence that only shows you did your job well, not that others recognise you',
+        'Old evidence: most criteria look at the last 5 years',
+        'Going over the limits: up to 10 pieces of evidence, usually 3 pages each'
       ],
       visaRoutes: [
         { t: 'Graduate visa', tag: 'No sponsor', tagBg: '#DDF6E8', tagFg: '#14653F', d: '18 months (3 years after a PhD) to work in any job after a UK degree.', best: 'Everyone finishing a UK degree', url: 'https://www.gov.uk/graduate-visa', link: 'Graduate visa on GOV.UK' },
