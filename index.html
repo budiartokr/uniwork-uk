@@ -91,6 +91,12 @@ textarea:focus{border-color:#F8D93A;outline:none}
 <div class="root" style="font-family: Geist, system-ui, sans-serif; color: #14174F; background: #F5F6FB; min-height: 100vh; font-size: 16px; line-height: 1.6">
 
 <!-- ============ HEADER ============ -->
+<template data-sc="if" value="{{preview.on}}" hint-placeholder-val="{{false}}">
+<div role="status" style="background: #0B1440; color: #FFFFFF; padding: 8px clamp(16px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; font-size: 14px">
+<span><strong style="color: #F8D93A; font-weight: 800">Admin preview: first visit.</strong> You see UniWork as a new visitor. Nothing is saved and no stats are counted.</span>
+<span style="display: flex; gap: 8px; margin-left: auto"><button onClick="{{preview.restart}}" style="min-height: 36px; padding: 0 12px; border-radius: 8px; border: 2px solid #FFFFFF; background: transparent; color: #FFFFFF; font-size: 14px; font-weight: 700">Start again</button><button onClick="{{preview.exit}}" style="min-height: 36px; padding: 0 12px; border-radius: 8px; border: none; background: #F8D93A; color: #0B1440; font-size: 14px; font-weight: 700">Exit preview</button></span>
+</div>
+</template>
 <header style="background: #FFFFFF; border-bottom: 1px solid #E3E7F5; padding: 0 clamp(16px, 4vw, 40px); display: flex; flex-wrap: nowrap; align-items: center; gap: 0 24px; position: sticky; top: 0; z-index: 30">
 <button onClick="{{go.start}}" aria-label="UniWork UK, go to start" class="logo" style="display: flex; align-items: center; gap: 10px; background: none; border: none; padding: 0; min-height: 60px; color: #1E4ADD; font-family: Geist, sans-serif; font-weight: 800; font-size: 21px; letter-spacing: -0.02em">
 <svg aria-hidden="true" viewBox="0 0 32 32" width="32" height="32" style="flex: none"><circle cx="16" cy="16" r="16" style="fill: #1E4ADD"></circle><path d="M5 13.5 16 8l11 5.5L16 19z" style="fill: #FFFFFF"></path><path d="M10 16.5v4.5c0 1.8 2.7 3.2 6 3.2s6-1.4 6-3.2v-4.5L16 19.5z" style="fill: #F8D93A"></path><path d="M25 14v6" style="stroke: #FFFFFF; stroke-width: 1.6; stroke-linecap: round"></path></svg>
@@ -1618,6 +1624,7 @@ UniWork UK
 <section aria-labelledby="st-h" style="flex: 1 1 100%; background: #FFFFFF; border: 1px solid #E3E7F5; border-radius: 16px; padding: clamp(20px, 2.6vw, 30px)">
 <h2 id="st-h" style="margin: 0 0 6px; font-family: Geist, sans-serif; font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; font-size: 24px">Owner view: fake-door test</h2>
 <p style="margin: 0 0 14px; font-size: 15px">The numbers that show whether UniWork works: activation, return visits, leads and the fake-door test. Only you see this panel.</p>
+<p style="margin: 0 0 14px"><a class="btn outline" href="#first-visit" target="_blank" rel="noopener">See the site as a first-time visitor</a></p>
 <form onSubmit="{{loadStats}}" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end"><div style="flex: 1 1 260px"><label for="st-key" style="display: block; font-weight: 600; margin-bottom: 6px">Admin key (live site only)</label><input id="st-key" class="field" type="password" autocomplete="off" value="{{adminKey}}" onChange="{{setAdminKey}}" onInput="{{setAdminKey}}"></div><button type="submit" class="btn ind">Load the numbers</button></form>
 <p role="status" aria-live="polite" style="margin: 12px 0 0; font-weight: 600">{{stats.line}}</p>
 <template data-sc="for" list="{{stats.lists}}" as="l" hint-placeholder-count="2"><p style="margin: 10px 0 0; font-size: 14px"><strong style="font-weight: 800">{{l.t}}:</strong> {{l.v}}</p></template>
@@ -2394,6 +2401,7 @@ class Component extends DCLogic {
   }
 
   hashOf(st) {
+    if (this.preview && st.tab === 'home') return 'first-visit';
     if (this.statsHash && st.tab === 'account') return 'stats';
     if (st.tab === 'sponsors' && AG_ROUTES[st.ag]) return AG_ROUTES[st.ag];
     return ROUTES[st.tab] || '';
@@ -2405,6 +2413,7 @@ class Component extends DCLogic {
     if (!h) { if (fromEvent && this.state.tab !== 'home') this.setState({ tab: 'home' }); return; }
     if (h === this.hashOf(this.state)) return;
     if (h === 'stats') { this.statsHash = true; this.setState({ tab: 'account' }); return; }
+    if (h === 'first-visit') { if (!this.preview) { window.location.reload(); return; } this.setState({ tab: 'home' }); return; }
     const ag = Object.keys(AG_ROUTES).find((k) => AG_ROUTES[k] === h);
     if (ag) { this.setState({ tab: 'sponsors', ag }); this.loadSponsors(); return; }
     const tab = Object.keys(ROUTES).find((k) => ROUTES[k] === h);
@@ -2426,10 +2435,12 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    try { this.preview = /^#first-visit$/.test(window.location.hash || ''); } catch (e) { this.preview = false; }
     this.startExtras();
     this.loaded = true;
     try { this.statsHash = /^#stats$/.test(window.location.hash || ''); window.addEventListener('hashchange', () => this.applyHash(true)); } catch (e) { /* no window */ }
     try {
+      if (this.preview) return;
       const raw = window.localStorage.getItem(STORE_KEY);
       if (!raw) return;
       const saved = JSON.parse(raw);
@@ -2445,6 +2456,7 @@ class Component extends DCLogic {
   componentDidUpdate() {
     if (!this.loaded) return;
     this.syncHash();
+    if (this.preview) return;
     try {
       const out = {};
       SAVED_KEYS.forEach((k) => { out[k] = this.state[k]; });
@@ -2485,6 +2497,7 @@ class Component extends DCLogic {
   }
 
   track(type, extra) {
+    if (this.preview) return;
     this.send('track', { type, sid: this.sid(), page: this.state.tab, ...(extra || {}) }).catch(() => {});
   }
 
@@ -2548,7 +2561,7 @@ class Component extends DCLogic {
       }).catch(() => {});
     }
     if (this.hosted()) { try { fetch(API_BASE + 'fx').then((r) => (r.ok ? r.json() : null)).then((d) => { if (d && d.rates) this.setState({ fxRates: d.rates, fxUpdated: d.updated }); }).catch(() => {}); } catch (e) { /* manual rate */ } }
-    try { if (!window.sessionStorage.getItem('uw-session')) { window.sessionStorage.setItem('uw-session', '1'); setTimeout(() => this.track('session'), 0);
+    try { if (!this.preview && !window.sessionStorage.getItem('uw-session')) { window.sessionStorage.setItem('uw-session', '1'); setTimeout(() => this.track('session'), 0);
       const today = new Date().toISOString().slice(0, 10), last = window.localStorage.getItem('uw-last-visit');
       if (last && last !== today) setTimeout(() => this.track('return_visit'), 0);
       window.localStorage.setItem('uw-last-visit', today); } } catch (e) { /* ignore */ }
@@ -3973,6 +3986,9 @@ class Component extends DCLogic {
       agPack: s.ag === 'pack', agAlerts: s.ag === 'alerts',
       gteClick: () => this.track('partner_click', { partner: 'gte' }),
       quickChecks, proof, gvBanner, doors, faq, checkAdGo,
+      preview: { on: !!this.preview,
+        restart: () => { try { window.location.hash = 'first-visit'; window.location.reload(); } catch (e) { /* ignore */ } },
+        exit: () => { try { window.location.href = window.location.pathname; } catch (e) { /* ignore */ } } },
       barOn, hdrAccClass: barOn ? 'hidesm' : '', quick, inst, em, showInstallCard,
       installOpen: !!s.installOpen, openInstall: () => { this.track('install_open'); set({ installOpen: true, helpOpen: false }); }, closeInstall: () => set({ installOpen: false }),
       dismissInstall: () => set({ installDismissed: true }),
