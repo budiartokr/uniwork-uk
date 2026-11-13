@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UniWork UK: arrival and part-time work for international students</title>
+<title>UniWork UK: work and stay in the UK, the visa-safe way</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1E4ADD">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
@@ -48,9 +48,11 @@ input[type=range]{accent-color:#1E4ADD;width:100%;height:44px;margin:0}
 .onbtab:hover{background:#FFFFFF}
 .jtab{flex:1 1 0;min-width:0;text-align:left;padding:14px 18px 16px;border:none;border-radius:14px 14px 0 0;transition:background .15s ease}
 .hero2{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:24px;align-items:end}
+.herocard{align-self:center}
 .hero2img{display:block;width:100%;max-width:520px;height:auto;margin-left:auto;align-self:end;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 24%),linear-gradient(to right,transparent 0,#000 22%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent 0,#000 24%),linear-gradient(to right,transparent 0,#000 22%);mask-composite:intersect}
 .jpanel{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:28px;align-items:center}
-@media (max-width:900px){.hero2,.jpanel{grid-template-columns:1fr}.hero2img{display:none}.jimg{display:none}}
+@media (max-width:900px){.hero2,.jpanel{grid-template-columns:1fr}.hero2img{display:none}
+.herocard{display:none !important}.jimg{display:none}}
 @media (max-width:560px){.jtab{padding:12px 10px}.jtab small{display:none}}
 @media (max-width:1200px){.hidemd{display:none !important}}
 @media (max-width:900px){.heroimg{display:none}.heroimg-m{display:block;width:100%;height:210px;object-fit:contain;object-position:center bottom;margin:12px 0 0}.herotext{max-width:100% !important;min-height:0;padding-bottom:16px !important}}
@@ -124,49 +126,63 @@ UniWork UK
 </template>
 <template data-sc="if" value="{{isHome}}" hint-placeholder-val="{{true}}">
 <main style="background: #F5F6FB">
-<section aria-labelledby="hero-h" style="background: #1E4ADD; color: #FFFFFF; position: relative; overflow: hidden; padding: clamp(28px, 4vw, 52px) clamp(16px, 4vw, 40px) 0">
+<template data-sc="if" value="{{gvBanner.show}}" hint-placeholder-val="{{true}}">
+<a href="#graduate-route-pack" onClick="{{gvBanner.go}}" style="display: block; background: #F8D93A; color: #0B1440; text-decoration: none; padding: 10px clamp(16px, 4vw, 40px)">
+<span style="display: block; max-width: 1240px; margin: 0 auto; font-size: 15px"><strong style="font-weight: 800">Final year? {{gvBanner.days}} left to get a 2-year Graduate visa.</strong> Applications from 1 January 2027 get 18 months. <span style="font-weight: 700; text-decoration: underline">See your dates →</span></span>
+</a>
+</template>
+<section aria-labelledby="hero-h" style="background: #1E4ADD; color: #FFFFFF; position: relative; overflow: hidden; padding: clamp(28px, 4vw, 52px) clamp(16px, 4vw, 40px)">
 <div class="hero2" style="max-width: 1240px; margin: 0 auto">
-<div style="padding-bottom: clamp(28px, 4vw, 52px); min-width: 0">
+<div style="min-width: 0">
 <p style="margin: 0 0 16px; font-weight: 600; font-size: 16px; color: #DCE3FF">For international students on a UK Student visa</p>
 <h1 id="hero-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; line-height: 0.94; letter-spacing: -0.035em">
-<span style="display: block; color: #FFFFFF; font-size: clamp(36px, 4.3vw, 64px)">From your first week to your</span>
-<span style="position: relative; display: inline-block; margin: 12px 0 0 -10px; padding: clamp(10px, 1.1vw, 14px) clamp(22px, 2.4vw, 34px) clamp(14px, 1.6vw, 22px) clamp(14px, 1.4vw, 20px); background: #F8D93A; color: #0B1440; font-size: clamp(40px, 5.4vw, 80px); transform: rotate(-1.5deg)">Graduate visa<svg aria-hidden="true" viewBox="0 0 140 120" style="position: absolute; right: clamp(-40px, -2.8vw, -22px); top: 30%; width: clamp(44px, 4.6vw, 70px); height: auto; fill: #01D46B"><path d="M24 64 C8 30 46 6 70 30 C78 8 118 4 124 34 C150 50 132 92 104 92 C96 118 54 122 46 98 C18 102 4 82 24 64 Z"></path></svg></span>
+<span style="display: block; color: #FFFFFF; font-size: clamp(38px, 4.6vw, 68px)">Work in the UK</span>
+<span style="position: relative; display: inline-block; margin: 12px 0 0 -10px; padding: clamp(10px, 1.1vw, 14px) clamp(22px, 2.4vw, 34px) clamp(14px, 1.6vw, 22px) clamp(14px, 1.4vw, 20px); background: #F8D93A; color: #0B1440; font-size: clamp(38px, 5vw, 74px); transform: rotate(-1.5deg)">the visa-safe way</span>
 </h1>
-<p style="margin: 30px 0 0; max-width: 31em; font-size: clamp(17px, 1.4vw, 19px); font-weight: 500">One plan for your whole time in the UK. <strong style="font-weight: 700; color: #F8D93A">Arrive</strong> and settle in, <strong style="font-weight: 700; color: #F8D93A">work</strong> part-time within your visa, plan your <strong style="font-weight: 700; color: #F8D93A">money</strong>, and get ready to <strong style="font-weight: 700; color: #F8D93A">stay</strong> after your degree.</p>
-<p style="margin: 26px 0 10px; font-weight: 700; font-size: 17px">Where are you now?</p>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px">
-<button onClick="{{doorHome}}" style="text-align: left; border: 2px solid #F8D93A; background: #F8D93A; color: #0B1440; border-radius: 14px; padding: 14px 16px; min-height: 72px"><strong style="display: block; font-size: 18px; font-weight: 800">I’m still at home</strong><span style="font-size: 14px">Visa, money and travel, step by step</span></button>
-<button onClick="{{doorUk}}" style="text-align: left; border: 2px solid #FFFFFF; background: transparent; color: #FFFFFF; border-radius: 14px; padding: 14px 16px; min-height: 72px"><strong style="display: block; font-size: 18px; font-weight: 800">I’m already in the UK</strong><span style="font-size: 14px">Part-time jobs your visa allows, and your plan</span></button>
-</div>
-<p style="margin: 22px 0 0; font-size: 15px; color: #DCE3FF">Or search part-time jobs now:</p>
-<form onSubmit="{{goSearch}}" style="margin-top: 8px; background: #FFFFFF; border-radius: 14px; padding: 12px; display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; box-shadow: 0 18px 40px -24px #0B1440">
-<div style="flex: 2 1 220px; min-width: 0"><label for="home-q" style="display: block; color: #14174F; font-weight: 600; font-size: 14px; margin: 0 0 4px 4px">What</label><input id="home-q" class="field" type="search" placeholder="e.g. barista, retail, tutor" value="{{q}}" onChange="{{setQ}}" onInput="{{setQ}}"></div>
+<p style="margin: 28px 0 0; max-width: 32em; font-size: clamp(17px, 1.4vw, 19px); font-weight: 500">Find part-time jobs your Student visa allows, check any job ad or employer in seconds, and plan your way to a work visa after you graduate.</p>
+<form onSubmit="{{goSearch}}" style="margin-top: 22px; background: #FFFFFF; border-radius: 14px; padding: 12px; display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; box-shadow: 0 18px 40px -24px #0B1440">
+<div style="flex: 2 1 220px; min-width: 0"><label for="home-q" style="display: block; color: #14174F; font-weight: 600; font-size: 14px; margin: 0 0 4px 4px">Part-time job</label><input id="home-q" class="field" type="search" placeholder="e.g. barista, retail, tutor" value="{{q}}" onChange="{{setQ}}" onInput="{{setQ}}"></div>
 <div style="flex: 1 1 160px; min-width: 0"><label for="home-city" style="display: block; color: #14174F; font-weight: 600; font-size: 14px; margin: 0 0 4px 4px">Where</label><select id="home-city" class="field" value="{{city}}" onChange="{{setCity}}"><template data-sc="for" list="{{cityOptions}}" as="c" hint-placeholder-count="3"><option value="{{c}}">{{c}}</option></template></select></div>
-<button type="submit" class="btn ind" style="flex: 1 1 150px; min-height: 48px">Search jobs</button>
+<button type="submit" class="btn ind" style="flex: 1 1 150px; min-height: 48px">Find jobs</button>
 </form>
-<p style="margin: 14px 0 0; font-size: 15px; color: #DCE3FF">{{jobTotal}} visa-checked jobs in 10 cities, updated 12 November 2026. Free, no account needed.</p>
+<p style="margin: 18px 0 8px; font-weight: 700; font-size: 15px">Quick checks, free and instant:</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<template data-sc="for" list="{{quickChecks}}" as="c" hint-placeholder-count="3"><button onClick="{{c.go}}" style="min-height: 44px; padding: 0 14px; border-radius: 999px; border: 2px solid #FFFFFF; background: rgba(255,255,255,.1); color: #FFFFFF; font-size: 15px; font-weight: 700; text-align: left">{{c.label}}</button></template>
 </div>
-<img class="hero2img" src="images/hero.webp" alt="Five students looking at a computer screen together">
+<ul aria-label="Why students trust UniWork" style="list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; color: #DCE3FF">
+<template data-sc="for" list="{{proof}}" as="x" hint-placeholder-count="5"><li style="display: flex; gap: 6px; align-items: center"><span aria-hidden="true" style="color: #F8D93A; font-weight: 800">✓</span>{{x}}</li></template>
+</ul>
+</div>
+<aside class="herocard" aria-label="Example of a visa check" style="background: #FFFFFF; color: #14174F; border-radius: 18px; padding: 22px; box-shadow: 0 24px 50px -28px #0B1440; max-width: 440px; margin-left: auto; transform: rotate(1deg)">
+<p style="margin: 0; font-size: 12px; font-weight: 800; letter-spacing: .04em; color: #4A4F86">EXAMPLE CHECK, NOT A REAL JOB</p>
+<p style="margin: 8px 0 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.15">Barista, part-time</p>
+<p style="margin: 4px 0 14px; font-size: 15px; color: #4A4F86">Leeds · 16 hours a week · £12.80 an hour</p>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 15px">
+<li style="display: flex; gap: 10px"><span aria-hidden="true" style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: #DDF6E8; color: #14653F; display: grid; place-items: center; font-weight: 800; font-size: 13px">✓</span>Within your 20-hour term-time limit</li>
+<li style="display: flex; gap: 10px"><span aria-hidden="true" style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: #DDF6E8; color: #14653F; display: grid; place-items: center; font-weight: 800; font-size: 13px">✓</span>An employee job, not self-employed</li>
+<li style="display: flex; gap: 10px"><span aria-hidden="true" style="flex: none; width: 22px; height: 22px; border-radius: 50%; background: #DDF6E8; color: #14653F; display: grid; place-items: center; font-weight: 800; font-size: 13px">✓</span>Pays above the £12.71 minimum wage</li>
+</ul>
+<p style="margin: 16px 0 0; display: inline-block; background: #DDF6E8; color: #14653F; border-radius: 999px; padding: 6px 14px; font-weight: 800">Looks visa-safe</p>
+<button onClick="{{checkAdGo}}" class="btn ind" style="display: block; width: 100%; margin-top: 16px">Check a real job ad</button>
+</aside>
 </div>
 </section>
 
-<section aria-labelledby="fck-h" style="padding: clamp(36px, 4.5vw, 64px) clamp(16px, 4vw, 40px) 0">
+<section aria-labelledby="doors-h" style="padding: clamp(32px, 4vw, 52px) clamp(16px, 4vw, 40px) 0">
 <div style="max-width: 1240px; margin: 0 auto">
-<h2 id="fck-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.04; letter-spacing: -0.03em">Find it. Check it. Keep it.</h2>
-<p style="margin: 10px 0 0; max-width: 40em; font-size: 17px">General job sites stop at the advert. UniWork stays with you until the payslip, because that is where Student visa problems start.</p>
-<ol style="list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px">
-<template data-sc="for" list="{{pillars}}" as="t" hint-placeholder-count="3">
-<li style="background: {{t.bg}}; color: {{t.fg}}; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
-<h3 style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: -0.03em; line-height: 1.1"><span style="color: {{t.accent}}">{{t.word}}</span> {{t.title}}</h3>
-<p style="margin: 0; font-size: 15px">{{t.text}}</p>
-<p style="margin: 0; font-size: 14px; background: {{t.egBg}}; border-radius: 8px; padding: 8px 10px"><strong style="font-weight: 700">Example:</strong> {{t.eg}}</p>
-<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 6px">
-<button class="{{t.btn1Class}}" onClick="{{t.go1}}" style="min-height: 44px; padding: 0 18px">{{t.cta1}}</button>
-<button onClick="{{t.go2}}" style="min-height: 44px; padding: 0 12px; border: none; background: none; color: {{t.linkFg}}; font-size: 15px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px">{{t.cta2}}</button>
-</div>
-</li>
+<p style="margin: 0 0 6px; font-family: Geist, sans-serif; font-weight: 800; color: #1E4ADD">Arrive. Work. Save. Stay.</p>
+<h2 id="doors-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.04; letter-spacing: -0.03em">Where are you now?</h2>
+<p style="margin: 10px 0 20px; max-width: 40em; font-size: 17px">Pick one and UniWork shows what matters for you right now.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 14px">
+<template data-sc="for" list="{{doors}}" as="d" hint-placeholder-count="3">
+<button onClick="{{d.go}}" style="text-align: left; border: 3px solid {{d.border}}; background: {{d.bg}}; color: {{d.fg}}; border-radius: 18px; padding: 20px; min-height: 150px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; font-weight: 800; letter-spacing: .03em">{{d.kicker}}</span>
+<strong style="font-family: Geist, sans-serif; font-weight: 800; font-size: 24px; line-height: 1.1">{{d.title}}</strong>
+<span style="font-size: 15px">{{d.text}}</span>
+<span style="margin-top: auto; padding-top: 8px; font-weight: 800">{{d.cta}} →</span>
+</button>
 </template>
-</ol>
+</div>
 </div>
 </section>
 
@@ -187,7 +203,7 @@ UniWork UK
 <section aria-labelledby="journey-h" style="padding: clamp(40px, 5vw, 72px) clamp(16px, 4vw, 40px) 0">
 <div style="max-width: 1240px; margin: 0 auto">
 <h2 id="journey-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.04; letter-spacing: -0.03em">From arrival to your work visa</h2>
-<p style="margin: 10px 0 22px; max-width: 40em; font-size: 17px">Four stages, one plan. Pick where you are now.</p>
+<p style="margin: 10px 0 22px; max-width: 40em; font-size: 17px">Arrive, work, save and stay: four stages in one free plan.</p>
 <div role="tablist" aria-label="Arrive, Jobs, Money, After uni" onKeyDown="{{journeyKey}}" style="display: flex; gap: 6px">
 <template data-sc="for" list="{{journeyTabs}}" as="j" hint-placeholder-count="4"><button class="jtab" role="tab" id="{{j.id}}" aria-selected="{{j.sel}}" aria-controls="journey-panel" tabIndex="{{j.tabIndex}}" onClick="{{j.pick}}" style="background: {{j.bg}}; color: {{j.fg}}"><span style="display: block; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(24px, 3vw, 40px); letter-spacing: -0.035em; line-height: 1.05">{{j.word}}</span><small style="display: block; margin-top: 4px; font-size: 14px; font-weight: 500; opacity: {{j.subOp}}">{{j.sub}}</small></button></template>
 </div>
@@ -210,18 +226,25 @@ UniWork UK
 </div>
 </section>
 
-<section aria-labelledby="emp-h" style="padding: clamp(40px, 5vw, 72px) clamp(16px, 4vw, 40px)">
-<div style="max-width: 1240px; margin: 0 auto; background: #14174F; color: #FFFFFF; border-radius: 18px; padding: clamp(22px, 3.4vw, 44px); display: flex; flex-wrap: wrap; gap: 24px 48px">
-<div style="flex: 1 1 320px; min-width: 0">
-<h2 id="emp-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(26px, 3vw, 40px); letter-spacing: -0.03em; line-height: 1.08; color: #F8D93A">Hiring international students?</h2>
-<p style="margin: 10px 0 18px; font-size: 17px; max-width: 30em">Many shops and cafés turn students away because they are unsure of the rules. Share this one-minute summary with your manager.</p>
-<a class="btn sun" href="https://www.gov.uk/view-right-to-work" target="_blank" rel="noopener">Check right to work on GOV.UK</a>
+<section aria-labelledby="hdeals-h" style="padding: clamp(40px, 5vw, 72px) clamp(16px, 4vw, 40px) 0">
+<div style="max-width: 1240px; margin: 0 auto">
+<div style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; justify-content: space-between">
+<h2 id="hdeals-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.04; letter-spacing: -0.03em">Student deals for your first month</h2>
+<button onClick="{{go.partners}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #1E4ADD; font-size: 16px; font-weight: 800; text-decoration: underline; text-underline-offset: 3px">See all {{homeDealsN}} deals</button>
 </div>
-<ul style="flex: 2 1 480px; min-width: 0; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
-<template data-sc="for" list="{{employerFacts}}" as="f" hint-placeholder-count="4"><li style="background: rgba(255,255,255,.08); border-radius: 12px; padding: 14px 16px; font-size: 15px"><strong style="display: block; font-weight: 700; color: #FFFFFF">{{f.t}}</strong>{{f.d}}</li></template>
-</ul>
+<p style="margin: 10px 0 18px; max-width: 40em; font-size: 17px">A bank account in a day, cheaper money from home, cashback on things for your room and cheaper food.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px">
+<template data-sc="for" list="{{homeDeals}}" as="p" hint-placeholder-count="4">
+<a href="{{p.url}}" target="_blank" rel="noopener" onClick="{{p.click}}" style="display: flex; gap: 14px; align-items: center; background: #FFFFFF; border: 1px solid #E3E7F5; color: #14174F; border-radius: 16px; padding: 14px 16px; text-decoration: none; min-height: 80px">
+<span aria-hidden="true" style="flex: none; width: 48px; height: 48px; border-radius: 14px; background: {{p.color}}; color: #FFFFFF; display: grid; place-items: center; font-family: Geist, sans-serif; font-weight: 800; font-size: 22px">{{p.initial}}</span>
+<span style="flex: 1; min-width: 0"><strong style="display: block; font-family: Geist, sans-serif; font-weight: 800; font-size: 18px">{{p.name}}</strong><span style="display: block; font-size: 14px">{{p.offer}}</span></span>
+</a>
+</template>
+</div>
+<p style="margin: 10px 0 0; font-size: 13px; color: #4A4F86">Referral links: UniWork may get a reward when you sign up, at no cost to you.</p>
 </div>
 </section>
+
 <section style="background: #FFFFFF; padding: clamp(48px, 6vw, 96px) clamp(16px, 4vw, 56px)">
 <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: center">
 <div style="flex: 1 1 360px; min-width: 0; max-width: 480px">
@@ -251,6 +274,38 @@ UniWork UK
 </div>
 </div>
 </section>
+<section aria-labelledby="faq-h" style="padding: clamp(40px, 5vw, 72px) clamp(16px, 4vw, 40px)">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 24px 48px">
+<div style="flex: 1 1 320px; min-width: 0; background: #14174F; color: #FFFFFF; border-radius: 18px; padding: clamp(22px, 3vw, 34px)">
+<p style="margin: 0 0 6px; font-weight: 800; color: #F8D93A">Who is behind UniWork</p>
+<h2 style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(24px, 2.6vw, 32px); letter-spacing: -0.03em; line-height: 1.1">Built by Global Talent Education</h2>
+<p style="margin: 10px 0 0; font-size: 16px">A team of international students and graduates who made the same move. We check every rule against GOV.UK and show the date we last checked it.</p>
+<p style="margin: 12px 0 0; font-size: 14px; color: #DCE3FF">UniWork gives general information, not immigration advice. For advice on your own case, ask your university’s international student team, <a href="https://www.ukcisa.org.uk" target="_blank" rel="noopener" style="color: #F8D93A">UKCISA</a> or a <a href="https://www.gov.uk/find-an-immigration-adviser" target="_blank" rel="noopener" style="color: #F8D93A">registered adviser</a>.</p>
+</div>
+<div style="flex: 2 1 480px; min-width: 0">
+<h2 id="faq-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(28px, 3.4vw, 46px); line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 14px">Questions students ask</h2>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<template data-sc="for" list="{{faq}}" as="f" hint-placeholder-count="4"><details style="background: #FFFFFF; border: 1px solid #E3E7F5; border-radius: 14px; padding: 14px 18px"><summary style="cursor: pointer; font-weight: 700; font-size: 17px; min-height: 28px">{{f.q}}</summary><p style="margin: 10px 0 0; font-size: 15px">{{f.a}}</p></details></template>
+</div>
+</div>
+</div>
+</section>
+</main>
+</template>
+
+<template data-sc="if" value="{{isEmployers}}" hint-placeholder-val="{{false}}">
+<main style="background: #F5F6FB; padding: clamp(28px, 4vw, 52px) clamp(16px, 4vw, 40px) 80px">
+<section aria-labelledby="emp-h" style="max-width: 1240px; margin: 0 auto; background: #14174F; color: #FFFFFF; border-radius: 18px; padding: clamp(22px, 3.4vw, 44px); display: flex; flex-wrap: wrap; gap: 24px 48px">
+<div style="flex: 1 1 320px; min-width: 0">
+<p style="margin: 0 0 6px; font-weight: 700; color: #DCE3FF">For employers</p>
+<h1 id="emp-h" style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: clamp(30px, 3.6vw, 48px); letter-spacing: -0.03em; line-height: 1.05; color: #F8D93A">Hiring international students?</h1>
+<p style="margin: 10px 0 18px; font-size: 17px; max-width: 30em">Many shops and cafés turn students away because they are unsure of the rules. Share this one-minute summary with your manager.</p>
+<a class="btn sun" href="https://www.gov.uk/view-right-to-work" target="_blank" rel="noopener">Check right to work on GOV.UK</a>
+</div>
+<ul style="flex: 2 1 480px; min-width: 0; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
+<template data-sc="for" list="{{employerFacts}}" as="f" hint-placeholder-count="4"><li style="background: rgba(255,255,255,.08); border-radius: 12px; padding: 14px 16px; font-size: 15px"><strong style="display: block; font-weight: 700; color: #FFFFFF">{{f.t}}</strong>{{f.d}}</li></template>
+</ul>
+</section>
 </main>
 </template>
 
@@ -259,7 +314,7 @@ UniWork UK
 <div aria-hidden="true" style="position: absolute; right: -200px; top: -200px; width: 520px; height: 520px; border-radius: 50%; background: #FFFFFF; opacity: 0.07"></div>
 <div style="position: relative; max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px 64px; align-items: center">
 <div style="flex: 1 1 360px; min-width: 0; color: #FFFFFF">
-<p style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 22px; color: #F8D93A">Arrive. Work. Stay.</p>
+<p style="margin: 0; font-family: Geist, sans-serif; font-weight: 800; font-size: 22px; color: #F8D93A">Arrive. Work. Save. Stay.</p>
 <h1 style="margin: 8px 0 0; font-family: Geist, sans-serif; font-weight: 700; font-size: clamp(38px, 5vw, 72px); line-height: 1; letter-spacing: -0.03em; color: #F8D93A">Welcome to the UK.</h1>
 <p style="margin: 20px 0 28px; max-width: 26em; font-size: 18px">Set up in under a minute. Three questions, then you get a personal plan: what to do this week, jobs in your city and your visa hour limit.</p>
 <img src="images/laptop.webp" alt="A student working on a laptop" style="display: block; width: 100%; max-width: 420px; height: auto">
@@ -1729,6 +1784,7 @@ UniWork UK
 <button onClick="{{go.partners}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #F8D93A; font-size: 15px; text-decoration: underline">Student deals</button>
 <button onClick="{{openInstall}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #F8D93A; font-size: 15px; text-decoration: underline">Get the app on your phone</button>
 <button onClick="{{openGloss}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #F8D93A; font-size: 15px; text-decoration: underline">Jargon buster</button>
+<button onClick="{{go.employers}}" style="min-height: 44px; padding: 0; border: none; background: none; color: #F8D93A; font-size: 15px; text-decoration: underline">For employers</button>
 </p>
 </div>
 </footer>
@@ -2248,7 +2304,7 @@ const TB_LISTED = ['Bangladesh', 'China', 'Ghana', 'Hong Kong', 'India', 'Indone
 const ATAS_EXEMPT = ['Australia', 'Canada', 'France', 'Germany', 'Greece', 'Italy', 'Japan', 'New Zealand', 'Singapore', 'South Korea', 'Spain', 'Switzerland', 'United States'];
 // One link per page: #name in the address (claude.ai keeps a plain #name only)
 const ROUTES = { home: '', dashboard: 'my-plan', wizard: 'setup', predep: 'before-you-fly', settle: 'settle-in', roadmap: 'first-four-weeks', rules: 'visa-rules',
-  jobs: 'part-time-jobs', hours: 'hours-and-pay', cv: 'cv-builder', money: 'budget', partners: 'partner-deals', sponsors: 'after-graduation', mentor: 'mentorship', account: 'account' };
+  jobs: 'part-time-jobs', hours: 'hours-and-pay', cv: 'cv-builder', money: 'budget', partners: 'partner-deals', sponsors: 'after-graduation', mentor: 'mentorship', account: 'account', employers: 'for-employers' };
 const AG_ROUTES = { pack: 'graduate-route-pack', alerts: 'sponsor-job-alerts', sw: 'skilled-worker-rules', company: 'company-check', offer: 'offer-check', salary: 'salary-check' };
 const longDate = (d) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 const AI_FREE = 2;
@@ -3009,7 +3065,7 @@ class Component extends DCLogic {
     // Remember the last page opened in each stage (no re-render needed)
     if (curStage && (s.stageLast || {})[curStage] !== s.tab) this.state.stageLast = { ...(s.stageLast || {}), [curStage]: s.tab };
     const go = {};
-    ['home', 'predep', 'settle', 'roadmap', 'cv', 'jobs', 'rules', 'hours', 'money', 'partners'].forEach((id) => { go[id] = () => set({ tab: id }); });
+    ['home', 'employers', 'predep', 'settle', 'roadmap', 'cv', 'jobs', 'rules', 'hours', 'money', 'partners'].forEach((id) => { go[id] = () => set({ tab: id }); });
     go.sponsors = () => { set({ tab: 'sponsors' }); this.loadSponsors(); };
     go.mentor = () => { set({ tab: 'mentor' }); this.track('mentor_open'); };
     go.account = () => { set({ tab: 'account' }); this.track('signup_open'); };
@@ -3488,6 +3544,8 @@ class Component extends DCLogic {
       copy: async () => { try { await navigator.clipboard.writeText(q.code); } catch (e) { /* clipboard blocked: the code is on screen */ } set({ copied: id }); } }; };
     const DEAL_INTRO = { bank: 'Open a UK account in your first week. App banks are quickest; a high-street bank suits branch visits.', home: 'Book a room before you fly, then sort energy and wi-fi when you move in.', shop: 'A UK number on day one, then the things your room is missing.', food: 'Eat well for less: cheap surprise bags, and restaurant deals for nights out. For delivery apps, order as a customer only.' };
     const dealCat = DEAL_CATS.some((c) => c[0] === s.partnerCat) ? s.partnerCat : 'all';
+    const homeDeals = ['monzo', 'wise', 'rakuten', 'tgtg'].map((id) => ({ ...dealCard(id), click: () => this.track('partner_click', { partner: id, page: 'home' }) }));
+    const homeDealsN = Object.keys(PARTNERS).length;
     const deals = {
       pickTitle: p.pre ? 'Start with these before you fly' : 'Most useful in your first week',
       picks: (p.pre ? ['wise', 'uhomes', 'revolut'] : ['monzo', 'revolut', 'rakuten']).map(dealCard),
@@ -3531,10 +3589,10 @@ class Component extends DCLogic {
     const pctOf = (a, b) => (b ? Math.round(a / b * 100) + '%' : '–');
     const sc0 = st ? (st.counts || {}) : {};
     const topP = st ? Object.entries(st.partners || {}).sort((x, y) => y[1] - x[1]).slice(0, 3).map(([k, v]) => (k === 'gte' ? 'GTE consultation' : ((PARTNERS[k] || {}).name || k)) + ' ' + v).join(', ') : '';
-    const TAB_NAME = { dashboard: 'My plan', fly: 'Before you fly', arrive: 'Arrive', work: 'Part-time jobs', cash: 'Money', stay: 'After graduation' };
+    const TAB_NAME = { 'door-home': 'Home: still at home', 'door-uk': 'Home: already in the UK', 'door-final': 'Home: final year', 'check-ad': 'Home: check a job ad', 'check-sponsor': 'Home: sponsor check', 'check-gv': 'Home: Graduate visa check', 'gv-banner': 'Home: Graduate visa banner', dashboard: 'My plan', fly: 'Before you fly', arrive: 'Arrive', work: 'Part-time jobs', cash: 'Money', stay: 'After graduation' };
     const topList = (o, name) => Object.entries(o || {}).sort((x, y) => y[1] - x[1]).slice(0, 5).map(([k, v]) => name(k) + ' ' + v).join(', ') || 'None yet';
     const stats = st && st.tiles ? st : (st ? { line: 'Source: ' + st.source + '.', lists: [
-        { t: 'Most-clicked tabs', v: topList(st.navs, (k) => TAB_NAME[k] || k) },
+        { t: 'Most-clicked tabs and homepage buttons', v: topList(st.navs, (k) => TAB_NAME[k] || k) },
         { t: 'Best partner placements', v: topList(st.places, (k) => k.replace(/^gte /, 'GTE ')) }], tiles: [
       { t: 'Visits (sessions)', v: String(sc0.session || 0), d: (sc0.return_visit || 0) + ' were return visits on another day' },
       { t: 'Finished setup', v: String(sc0.setup_done || 0), d: pctOf(sc0.setup_done || 0, sc0.session || 0) + ' of visits (activation)' },
@@ -3742,6 +3800,33 @@ class Component extends DCLogic {
       go: () => { set({ helpOpen: false }); go.mentor(); } };
     const helpCards = (p.pre || !s.onboarded) ? [gteCard, mentorCard] : [mentorCard, gteCard];
 
+    // Homepage (first visit): one promise, three instant checks, three doors
+    const homeClick = (id, fn) => () => { this.track('nav_click', { page: id, partner: 'home' }); fn(); };
+    const checkAdGo = homeClick('check-ad', () => set({ tab: 'jobs', adText: s.adText || AD_EXAMPLE }));
+    const quickChecks = [
+      { label: 'Can I take this job?', go: checkAdGo },
+      { label: 'Is this company a visa sponsor?', go: homeClick('check-sponsor', agGo.company) },
+      { label: 'How long will my Graduate visa be?', go: homeClick('check-gv', agGo.timeline) }
+    ];
+    const proof = [SRC.length + ' visa-checked part-time jobs', '128,000+ licensed visa sponsors', 'Rules checked against GOV.UK', 'Free, no account needed', 'By Global Talent Education'];
+    const daysLeft2027 = Math.ceil((new Date(2027, 0, 1) - new Date(new Date().toDateString())) / 864e5);
+    const gvBanner = { show: daysLeft2027 > 0, days: daysLeft2027 + (daysLeft2027 === 1 ? ' day' : ' days'),
+      go: (e) => { if (e && e.preventDefault) e.preventDefault(); homeClick('gv-banner', agGo.pack)(); } };
+    const doors = [
+      { kicker: 'STILL AT HOME', title: 'Getting ready to come', text: 'Visa, money, a room and what to pack, step by step, with free help to apply.', cta: 'Plan my move', bg: '#F8D93A', fg: '#0B1440', border: '#F8D93A',
+        go: homeClick('door-home', () => set({ profile: { ...this.state.profile, pre: true }, tab: 'predep' })) },
+      { kicker: 'ALREADY IN THE UK', title: 'Studying and need work', text: 'Part-time jobs your visa allows, a UK CV, and a log that keeps your hours legal.', cta: 'Find part-time jobs', bg: '#1E4ADD', fg: '#FFFFFF', border: '#1E4ADD',
+        go: homeClick('door-uk', () => set({ profile: { ...this.state.profile, pre: false }, tab: 'jobs', view: 'all' })) },
+      { kicker: 'FINAL YEAR', title: 'Want to stay after my degree', text: 'Your Graduate visa dates and cost, licensed sponsors, and whether a job offer would qualify.', cta: 'Plan after graduation', bg: '#14174F', fg: '#FFFFFF', border: '#14174F',
+        go: homeClick('door-final', agGo.timeline) }
+    ];
+    const faq = [
+      { q: 'Is UniWork free?', a: 'Yes. Jobs, the visa checks, your plan and the shift log are free. Full access (£3.99) adds extras such as sponsor job alerts and unlimited AI CV help.' },
+      { q: 'How many hours can I work on a Student visa?', a: 'Usually up to 20 hours a week in term time if you study at degree level, or 10 hours below degree level, counted Monday to Sunday across all jobs. You can work full-time in your university’s official vacations. Your visa conditions are the final word.' },
+      { q: 'Is this immigration advice?', a: 'No. UniWork gives general information checked against GOV.UK. For advice on your own case, ask your university’s international student team, UKCISA or a registered immigration adviser.' },
+      { q: 'Who is behind UniWork?', a: 'Global Talent Education, a team that helps international students study and work abroad. Some links on UniWork are referral links, and we say so where they appear.' }
+    ];
+
     // Full access bar: only once the student is engaged (finished setup or opened 3 pages)
     if (s.tab !== this.lastViewTab) { this.views = (this.views || 0) + 1; this.lastViewTab = s.tab; }
     const barOn = !!s.onboarded || (this.views || 0) >= 3;
@@ -3887,6 +3972,7 @@ class Component extends DCLogic {
       gradApply: s.gradApply || s.gradEnd, setGradApply: (e) => set({ gradApply: e.target.value }),
       agPack: s.ag === 'pack', agAlerts: s.ag === 'alerts',
       gteClick: () => this.track('partner_click', { partner: 'gte' }),
+      quickChecks, proof, gvBanner, doors, faq, checkAdGo,
       barOn, hdrAccClass: barOn ? 'hidesm' : '', quick, inst, em, showInstallCard,
       installOpen: !!s.installOpen, openInstall: () => { this.track('install_open'); set({ installOpen: true, helpOpen: false }); }, closeInstall: () => set({ installOpen: false }),
       dismissInstall: () => set({ installDismissed: true }),
@@ -3938,7 +4024,7 @@ class Component extends DCLogic {
       noSubmit: (e) => { e.preventDefault(); },
       go, nav, startOnboarding, startLabel: s.onboarded ? 'Open my plan' : 'Build my free plan',
       onboarded: s.onboarded, profileLine: p.city + ' · ' + limit + 'h limit',
-      isHome: s.tab === 'home', isWizard: s.tab === 'wizard', isDash: s.tab === 'dashboard', isRoadmap: s.tab === 'roadmap',
+      isEmployers: s.tab === 'employers', isHome: s.tab === 'home', isWizard: s.tab === 'wizard', isDash: s.tab === 'dashboard', isRoadmap: s.tab === 'roadmap',
       isJobs: s.tab === 'jobs', isRules: s.tab === 'rules', isSponsors: s.tab === 'sponsors',
       services, matrix, jobTotal: SRC.length, stepTotal: total,
 
@@ -4008,7 +4094,7 @@ class Component extends DCLogic {
         { t: 'Graduate visa fund', v: GBP(gvCost), bg: 'rgba(255,255,255,.14)', fg: '#FFFFFF' }],
       funds: s.funds, fundsSet, pfWhere, pfWhen, pf, fx, fxSet, fxCur, fxPickCur: (e) => set({ fx: { ...this.state.fx, cur: e.target.value, rate: '' } }), goal: { saved: s.goalSaved }, goalSet: (e) => set({ goalSaved: e.target.value }), gv,
       billFields, bills, pUrl, pClick, saveTips, compare,
-      isPartners: s.tab === 'partners', deals,
+      isPartners: s.tab === 'partners', deals, homeDeals, homeDealsN,
       isMentor: s.tab === 'mentor', mt: s.mt, mtSet, mentorSubmit, mtMsg: s.mtMsg, mtMsgColor: s.mtMsgColor,
       mentorStart: () => { try { const el = document.getElementById('mentor-form'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { /* ignore */ } },
       mentorWhy: [
