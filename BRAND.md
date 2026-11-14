@@ -233,7 +233,7 @@ Never call Global Talent Education services "immigration advice". Confirm the wo
 
 | | |
 |---|---|
-| Email | admin@globaltalent-education.com (temporary, until a UniWorks address exists) |
+| Email | hello@getuniworks.co.uk (temporary, until a UniWorks address exists) |
 | Phone | Not published |
 | Website | www.globaltalent-education.com |
 | Operator | Global Talent Education |
