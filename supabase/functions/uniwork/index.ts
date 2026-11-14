@@ -8,8 +8,10 @@
 // GET  /uniwork/unsubscribe?token=   stops reminder emails
 // GET  /uniwork/stats?key=   owner numbers (key is in table app_config, row admin_key)
 // GET  /uniwork/fx       exchange rates per £1 (cached 6 hours)
+// GET  /uniwork/jobs?city=&q=   live part-time jobs from Adzuna and Reed (cached 1 hour)
 // POST /uniwork/reminders   daily, called by pg_cron with header x-cron-secret
 // Optional secrets for email: RESEND_API_KEY, MAIL_FROM, MENTOR_INBOX
+// Optional secrets for live jobs: ADZUNA_APP_ID, ADZUNA_APP_KEY, REED_API_KEY
 
 const SB = Deno.env.get('SUPABASE_URL')!;
 const KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
@@ -54,6 +56,80 @@ async function fx() {
   if (d.result !== 'success') throw new Error('fx');
   const body = { base: 'GBP', rates: d.rates, updated: d.time_last_update_utc, source: 'ExchangeRate-API (open.er-api.com)' };
   fxCache = { at: Date.now(), body };
+  return body;
+}
+
+// ---- Live part-time jobs (moved from the Vercel /api/jobs function)
+const CITIES = ['London', 'Manchester', 'Birmingham', 'Leeds', 'Edinburgh', 'Glasgow', 'Bristol', 'Liverpool', 'Cardiff', 'Belfast'];
+const PER_CITY = 20;
+function category(title: string) {
+  const t = title.toLowerCase();
+  if (/student union|students' union|campus|ambassador|notetaker|library/.test(t)) return 'oncampus';
+  if (/tutor|teaching|invigilat|cover supervisor|learning support|education/.test(t)) return 'tutoring';
+  if (/care|support worker|nursery|housekeep|health/.test(t)) return 'care';
+  if (/warehouse|picker|packer|delivery|driver|logistics|parcel/.test(t)) return 'logistics';
+  if (/event|steward|catering|banquet/.test(t)) return 'events';
+  if (/barista|waiter|waitress|kitchen|chef|bar staff|bartender|hotel|restaurant|cafe|food|hospitality/.test(t)) return 'food';
+  if (/admin|receptionist|customer service|call centre|office|data entry|accounts/.test(t)) return 'admin';
+  return 'retail';
+}
+const money = (n: number) => '£' + Number(n).toLocaleString('en-GB', { maximumFractionDigits: 2 });
+function pay(min: number, max: number) {
+  if (!min && !max) return 'Salary not specified';
+  const lo = min || max, hi = max || min;
+  const unit = hi < 100 ? ' per hour' : (hi < 1000 ? ' per day' : ' per annum');
+  return (lo === hi ? money(lo) : money(lo) + ' - ' + money(hi)) + unit;
+}
+function ago(iso: string) {
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
+  const days = Math.floor((Date.now() - d.getTime()) / 864e5);
+  if (days <= 0) return 'Today';
+  if (days === 1) return 'Yesterday';
+  if (days < 14) return days + ' days ago';
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+}
+// deno-lint-ignore no-explicit-any
+async function adzuna(city: string, q: string): Promise<any[]> {
+  const id = Deno.env.get('ADZUNA_APP_ID'), key = Deno.env.get('ADZUNA_APP_KEY');
+  if (!id || !key) return [];
+  const u = new URL('https://api.adzuna.com/v1/api/jobs/gb/search/1');
+  u.search = new URLSearchParams({ app_id: id, app_key: key, where: city, what: q || 'part time', part_time: '1', results_per_page: String(PER_CITY), sort_by: 'date', 'content-type': 'application/json' }).toString();
+  const r = await fetch(u);
+  if (!r.ok) throw new Error('Adzuna ' + r.status);
+  const data = await r.json();
+  // deno-lint-ignore no-explicit-any
+  return (data.results || []).map((j: any) => ['az' + j.id, j.title, (j.company && j.company.display_name) || 'Employer not named', (j.location && j.location.display_name) || city, pay(j.salary_min, j.salary_max), [j.contract_type, j.contract_time].filter(Boolean).join(', ').replace(/_/g, '-') || 'Part-time', ago(j.created), city, category(j.title), j.redirect_url, 'adzuna']);
+}
+// deno-lint-ignore no-explicit-any
+async function reed(city: string, q: string): Promise<any[]> {
+  const key = Deno.env.get('REED_API_KEY');
+  if (!key) return [];
+  const u = new URL('https://www.reed.co.uk/api/1.0/search');
+  u.search = new URLSearchParams({ keywords: q || '', locationName: city, distanceFromLocation: '10', partTime: 'true', resultsToTake: String(PER_CITY) }).toString();
+  const r = await fetch(u, { headers: { Authorization: 'Basic ' + btoa(key + ':') } });
+  if (!r.ok) throw new Error('Reed ' + r.status);
+  const data = await r.json();
+  // deno-lint-ignore no-explicit-any
+  return (data.results || []).map((j: any) => {
+    const [dd, mm, yy] = String(j.date || '').split('/');
+    return ['rd' + j.jobId, j.jobTitle, j.employerName || 'Employer not named', j.locationName || city, pay(j.minimumSalary, j.maximumSalary), 'Part-time', yy ? ago(`${yy}-${mm}-${dd}`) : '', city, category(j.jobTitle || ''), j.jobUrl || ('https://www.reed.co.uk/jobs/' + j.jobId), 'reedlive'];
+  });
+}
+const jobsCache = new Map<string, { at: number; body: unknown }>();
+async function jobs(cityIn: string | null, qIn: string | null) {
+  const city = cityIn && CITIES.includes(cityIn) ? cityIn : null;
+  const q = String(qIn || '').slice(0, 60);
+  const ck = (city || '*') + '|' + q.toLowerCase();
+  const hit = jobsCache.get(ck);
+  if (hit && Date.now() - hit.at < 3600e3) return hit.body;
+  // deno-lint-ignore no-explicit-any
+  const list: any[] = [], errors: string[] = [];
+  await Promise.all((city ? [city] : CITIES).flatMap((c) => [adzuna, reed].map((fn) => fn(c, q).then((l) => { list.push(...l); }).catch((e) => { errors.push(e.message); }))));
+  const seen = new Set<string>();
+  const unique = list.filter((j) => { const k = (j[1] + '|' + j[2]).toLowerCase(); if (seen.has(k)) return false; seen.add(k); return true; });
+  const body = { updated: new Date().toISOString(), count: unique.length, errors: [...new Set(errors)], jobs: unique };
+  jobsCache.set(ck, { at: Date.now(), body });
   return body;
 }
 
@@ -165,6 +241,7 @@ Deno.serve(async (req) => {
       return page('You will not get any more reminder emails from UniWorks.');
     }
     if (action === 'fx') return json(await fx());
+    if (action === 'jobs') return json(await jobs(url.searchParams.get('city'), url.searchParams.get('q')));
     if (action === 'stats') {
       const admin = await config('admin_key');
       if (!admin || url.searchParams.get('key') !== admin) return json({ error: 'Wrong key' }, 401);

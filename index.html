@@ -2808,7 +2808,7 @@ class Component extends DCLogic {
     try {
       const host = window.location.hostname || '';
       if (/^https?:$/.test(window.location.protocol) && !/claude\.ai$|claudeusercontent|anthropic/.test(host) && typeof fetch === 'function') {
-        fetch('api/jobs').then((r) => (r.ok ? r.json() : null)).then((d) => {
+        fetch(API_BASE + 'jobs').then((r) => (r.ok ? r.json() : null)).then((d) => {
           if (d && Array.isArray(d.jobs) && d.jobs.length) this.setState({ live: { jobs: d.jobs, updated: d.updated } });
         }).catch(() => {});
       }
