@@ -47,14 +47,14 @@
   ],
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/((?!sw\\.js$).*)",
       "has": [
         {
           "type": "host",
           "value": "uniwork-uk.vercel.app"
         }
       ],
-      "destination": "https://www.getuniworks.co.uk/:path*",
+      "destination": "https://www.getuniworks.co.uk/$1",
       "permanent": true
     }
   ]

@@ -1,7 +1,9 @@
 // UniWork UK service worker: lets the app open from the home screen, and shows the last
 // version it saw when the phone is offline. Pages always try the network first, so a new
 // deploy is picked up on the next visit. Bump VERSION to clear old caches.
-const VERSION = 'uniwork-v2';
+const VERSION = 'uniwork-v3';
+// The old address moved to www.getuniworks.co.uk: there, remove this worker and reload open tabs.
+const MOVED = self.location.hostname === 'uniwork-uk.vercel.app';
 const CORE = [
   './',
   'index.html',
@@ -16,10 +18,12 @@ const CORE = [
 ];
 
 self.addEventListener('install', (event) => {
+  if (MOVED) { self.skipWaiting(); return; }
   event.waitUntil(caches.open(VERSION).then((c) => c.addAll(CORE)).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (event) => {
+  if (MOVED) { event.waitUntil(caches.keys().then((ks) => Promise.all(ks.map((k) => caches.delete(k)))).then(() => self.registration.unregister()).then(() => self.clients.matchAll({ type: 'window' })).then((cs) => cs.forEach((c) => c.navigate('https://www.getuniworks.co.uk/' + (new URL(c.url).hash || ''))))); return; }
   event.waitUntil(
     caches.keys()
       .then((keys) => Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k))))
@@ -28,6 +32,7 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  if (MOVED) return;
   const req = event.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
