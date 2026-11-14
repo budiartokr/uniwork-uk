@@ -1,4 +1,4 @@
-// UniWork UK: live part-time jobs from Adzuna and Reed, merged into one list.
+// UniWorks: live part-time jobs from Adzuna and Reed, merged into one list.
 // Runs as a Vercel serverless function at /api/jobs (Node 18+, built-in fetch).
 // Set these environment variables in Vercel (Settings > Environment Variables):
 //   ADZUNA_APP_ID, ADZUNA_APP_KEY, REED_API_KEY

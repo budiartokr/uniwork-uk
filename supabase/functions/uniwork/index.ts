@@ -1,4 +1,4 @@
-// UniWork UK backend: one public Edge Function with several actions.
+// UniWorks backend: one public Edge Function with several actions.
 // POST /uniwork/track    {type, partner?, sid?, page?}       product events, fake-door and partner clicks
 // POST /uniwork/account  {name, email, country, university, city, courseEnd?, courseStart?, flyDate?, consent, source?}
 //                        needs at least one of courseEnd (YYYY-MM), courseStart or flyDate (YYYY-MM-DD)
@@ -19,7 +19,7 @@ const TYPES = new Set(['session', 'offer_open', 'checkout_click', 'partner_click
   'nav_click', 'help_open', 'setup_done', 'return_visit', 'email_capture', 'install_open', 'install_done']);
 
 const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { ...CORS, 'Content-Type': 'application/json' } });
-const page = (msg: string, status = 200) => new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>UniWork UK</title><body style="font-family:system-ui;max-width:520px;margin:15vh auto;padding:0 20px;color:#14174F"><h1 style="color:#1E4ADD">UniWork UK</h1><p style="font-size:18px">${msg}</p></body>`, { status, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+const page = (msg: string, status = 200) => new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>UniWorks</title><body style="font-family:system-ui;max-width:520px;margin:15vh auto;padding:0 20px;color:#14174F"><h1 style="color:#1E4ADD">UniWorks</h1><p style="font-size:18px">${msg}</p></body>`, { status, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
 const clean = (v: unknown, max = 200) => String(v ?? '').replace(/[<>]/g, '').trim().slice(0, max);
 const isEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
 const isDay = (v: string) => /^\d{4}-\d{2}-\d{2}$/.test(v) && !isNaN(Date.parse(v + 'T00:00:00Z'));
@@ -70,7 +70,7 @@ function due(a: Acc, today: Date) {
     const cut = new Date(Date.UTC(2027, 0, 1));
     const gradMonths = end < cut ? 24 : 18;
     list.push(
-      { kind: 'sponsor-search', at: addMonths(end, -9), subject: 'Start your sponsored job search', body: `Your course ends in ${fmt(end)}. Graduate schemes open now: check each employer in UniWork’s Company check before you apply.` },
+      { kind: 'sponsor-search', at: addMonths(end, -9), subject: 'Start your sponsored job search', body: `Your course ends in ${fmt(end)}. Graduate schemes open now: check each employer with the Company check in UniWorks before you apply.` },
       { kind: 'graduate-visa-prepare', at: addMonths(end, -1), subject: 'Get ready for your Graduate visa', body: 'Apply from the UK before your Student visa expires, once your university reports that you completed your course.' },
       { kind: 'sponsor-offer', at: addMonths(end, gradMonths - 4), subject: 'Four months left to secure a sponsored offer', body: 'Your Graduate visa ends in about four months. Use the Salary check to confirm an offer meets the new entrant rate.' }
     );
@@ -81,12 +81,12 @@ function due(a: Acc, today: Date) {
   if (a.course_start) {
     const start = new Date(a.course_start + 'T00:00:00Z');
     const open = new Date(start); open.setUTCMonth(open.getUTCMonth() - 6);
-    list.push({ kind: 'visa-window-open', at: open, subject: 'You can now apply for your Student visa', body: `Your course starts on ${fmtDay(start)}. Applications open 6 months before, so you can apply now. Have your CAS, passport and money evidence ready: your Before you fly plan in UniWork lists them.` });
+    list.push({ kind: 'visa-window-open', at: open, subject: 'You can now apply for your Student visa', body: `Your course starts on ${fmtDay(start)}. Applications open 6 months before, so you can apply now. Have your CAS, passport and money evidence ready: your Before you fly plan in UniWorks lists them.` });
   }
   if (a.fly_date) {
     const fly = new Date(a.fly_date + 'T00:00:00Z');
     const week = new Date(fly.getTime() - 7 * 864e5);
-    list.push({ kind: 'fly-week', at: week, subject: 'One week until you fly', body: `You fly on ${fmtDay(fly)}. Check your eVisa matches your airline booking and put your documents in your hand luggage. Your Before you fly plan in UniWork has the full list.` });
+    list.push({ kind: 'fly-week', at: week, subject: 'One week until you fly', body: `You fly on ${fmtDay(fly)}. Check your eVisa matches your airline booking and put your documents in your hand luggage. Your Before you fly plan in UniWorks has the full list.` });
   }
   const from = new Date(today.getTime() - 30 * 864e5);
   return list.filter((r) => r.at <= today && r.at >= from);
@@ -132,7 +132,7 @@ Deno.serve(async (req) => {
       }
       let sent = false;
       if (consent && !verified) {
-        sent = await sendEmail(email, 'Confirm your UniWork UK reminders', `<p>Hi ${clean(b.name, 60) || 'there'},</p><p>Confirm your email so UniWork UK can remind you before your visa deadlines.</p><p><a href="${FN}/verify?token=${token}">Confirm my email</a></p><p>If you didn’t sign up, ignore this email.</p>`);
+        sent = await sendEmail(email, 'Confirm your UniWorks reminders', `<p>Hi ${clean(b.name, 60) || 'there'},</p><p>Confirm your email so UniWorks can remind you before your visa deadlines.</p><p><a href="${FN}/verify?token=${token}">Confirm my email</a></p><p>If you didn’t sign up, ignore this email.</p>`);
       }
       return json({ ok: true, confirmSent: sent, verified });
     }
@@ -146,9 +146,9 @@ Deno.serve(async (req) => {
       const inbox = Deno.env.get('MENTOR_INBOX');
       if (inbox) await sendEmail(inbox, `${waitlist ? 'Mentor waitlist' : 'New mentor request'}: ${row.name} (${row.country})`, `<p>${row.name} &lt;${row.email}&gt;, ${row.university}</p><p>Topic: ${row.topic}<br>Language: ${row.language}<br>Times: ${row.times}</p><p>${row.notes}</p>`);
       if (waitlist) {
-        await sendEmail(email, 'You are on the UniWork mentor waitlist', `<p>Hi ${row.name || 'there'},</p><p>Thanks for joining the mentor waitlist for ${row.country || 'your country'}. We will email you as soon as a mentor from ${row.country || 'your country'} joins. You pay nothing until a session is booked.</p>`);
+        await sendEmail(email, 'You are on the UniWorks mentor waitlist', `<p>Hi ${row.name || 'there'},</p><p>Thanks for joining the mentor waitlist for ${row.country || 'your country'}. We will email you as soon as a mentor from ${row.country || 'your country'} joins. You pay nothing until a session is booked.</p>`);
       } else {
-        await sendEmail(email, 'We received your UniWork mentor request', `<p>Hi ${row.name || 'there'},</p><p>Thanks for requesting a 45-minute mentor session (£15). We will email you a mentor, a time and a payment link within 2 working days.</p>`);
+        await sendEmail(email, 'We received your UniWorks mentor request', `<p>Hi ${row.name || 'there'},</p><p>Thanks for requesting a 45-minute mentor session (£15). We will email you a mentor, a time and a payment link within 2 working days.</p>`);
       }
       return json({ ok: true });
     }
@@ -156,13 +156,13 @@ Deno.serve(async (req) => {
       const token = clean(url.searchParams.get('token'), 64);
       if (!token) return page('This link is not valid.', 400);
       const rows = await rest(`accounts?token=eq.${encodeURIComponent(token)}`, { method: 'PATCH', headers: { Prefer: 'return=representation' }, body: JSON.stringify({ verified: true }) });
-      return rows?.length ? page('Your email is confirmed. We will remind you before your visa deadlines.') : page('This link has expired. Sign up again in UniWork UK.', 404);
+      return rows?.length ? page('Your email is confirmed. We will remind you before your visa deadlines.') : page('This link has expired. Sign up again in UniWorks.', 404);
     }
     if (action === 'unsubscribe') {
       const token = clean(url.searchParams.get('token'), 64);
       if (!token) return page('This link is not valid.', 400);
       await rest(`accounts?token=eq.${encodeURIComponent(token)}`, { method: 'PATCH', headers: { Prefer: 'return=minimal' }, body: JSON.stringify({ consent: false }) });
-      return page('You will not get any more reminder emails from UniWork UK.');
+      return page('You will not get any more reminder emails from UniWorks.');
     }
     if (action === 'fx') return json(await fx());
     if (action === 'stats') {

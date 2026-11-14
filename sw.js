@@ -1,7 +1,7 @@
-// UniWork UK service worker: lets the app open from the home screen, and shows the last
+// UniWorks service worker: lets the app open from the home screen, and shows the last
 // version it saw when the phone is offline. Pages always try the network first, so a new
 // deploy is picked up on the next visit. Bump VERSION to clear old caches.
-const VERSION = 'uniwork-v3';
+const VERSION = 'uniwork-v4';
 // The old address moved to www.getuniworks.co.uk: there, remove this worker and reload open tabs.
 const MOVED = self.location.hostname === 'uniwork-uk.vercel.app';
 const CORE = [

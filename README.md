@@ -1,4 +1,4 @@
-# UniWork UK
+# UniWorks
 
 From your first week to your Graduate visa: visa-safe part-time jobs, money and next steps for international students in the UK. Built by Global Talent Education.
 

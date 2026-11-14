@@ -1,6 +1,6 @@
-# UniWork UK: brand guidelines (v1.0)
+# UniWorks: brand guidelines (v1.1)
 
-Baseline taken from the live site (uniwork-uk.vercel.app, repo `budiartokr/uniwork-uk`, commit `e4a2f66`, 13 Nov 2026). This document records how the brand looks and sounds today, so new pages, social posts and marketing stay consistent. **Change the site and this document together.**
+Baseline taken from the live site (www.getuniworks.co.uk, repo `budiartokr/uniwork-uk`). Renamed from "UniWork UK" to **UniWorks** on 14 Nov 2026. This document records how the brand looks and sounds today, so new pages, social posts and marketing stay consistent. **Change the site and this document together.**
 
 ---
 
@@ -8,13 +8,13 @@ Baseline taken from the live site (uniwork-uk.vercel.app, repo `budiartokr/uniwo
 
 | | |
 |---|---|
-| **Name** | **UniWork UK** (full). **UniWork** is fine once the context is clear, and is the home-screen app name. Never "Uniworks", "Uni Work" or "UNIWORK". |
+| **Name** | **UniWorks**: one word, capital U and capital W, always with the "s". Domain: **getuniworks.co.uk**. Never "UniWork", "Uniworks", "Uni Works", "UNIWORKS" or "UniWorks UK" (the UK flag in the logo already says UK). |
 | **Owner** | Built by **Global Talent Education**. Say "Built by Global Talent Education" or "By Global Talent Education"; avoid the bare "GTE" in customer-facing copy. |
 | **Audience** | International students in the UK, from pre-departure to the Graduate route and a work visa. |
 | **Brand promise** | **Work in the UK, the visa-safe way.** |
 | **Tagline** | **Arrive. Work. Save. Stay.** (the four stages of the student journey, in order) |
 | **One-line description** | From your first week to the Graduate route: visa-safe work, money and next steps for international students. |
-| **Page title pattern** | `UniWork UK: work and stay in the UK, the visa-safe way` |
+| **Page title pattern** | `UniWorks: work and stay in the UK, the visa-safe way` |
 | **Meta description** | Arrival plan, visa-checked part-time jobs, budget and visa sponsors for international students in the UK. |
 
 ### What the brand stands for
@@ -22,7 +22,7 @@ Baseline taken from the live site (uniwork-uk.vercel.app, repo `budiartokr/uniwo
 2. **Checked, with a date.** Rules are checked against GOV.UK, and the page says when.
 3. **Free to start.** The core checks work with no account.
 4. **People who made the same move.** Global Talent Education is a team of international students and graduates.
-5. **Honest limits.** UniWork gives general information, not immigration, tax or legal advice.
+5. **Honest limits.** UniWorks gives general information, not immigration, tax or legal advice.
 
 ### Proof points (approved, keep numbers current)
 - `N` visa-checked part-time jobs (live count)
@@ -45,20 +45,29 @@ Baseline taken from the live site (uniwork-uk.vercel.app, repo `budiartokr/uniwo
 
 ## 2. Logo
 
-**Mark:** a solid Visa Blue circle (`#1E4ADD`) with a white graduation cap, a Sun cap base (`#F8D93A`) and a white tassel.
-**Wordmark:** "UniWork UK" in Geist ExtraBold (800), letter-spacing −0.02em, Visa Blue on white, white on navy/blue.
+**Wordmark:** "UniWorks" set in **Unbounded ExtraBold (800)**, letter-spacing −0.02em, converted to outlines (no font needed to display it). Unbounded is wide and geometric: distinctive, but firm and easy to read at small sizes.
+**UK flag:** a Union Jack with rounded corners at the end of the wordmark, sitting on the baseline, 72% of the capital height, with a gap of about one-seventh of the capital height. The flag keeps its official colours (`#012169`, `#C8102E`, white) on every background.
 
-```svg
-<svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
-  <circle cx="16" cy="16" r="16" fill="#1E4ADD"/>
-  <path d="M5 13.5 16 8l11 5.5L16 19z" fill="#FFFFFF"/>
-  <path d="M10 16.5v4.5c0 1.8 2.7 3.2 6 3.2s6-1.4 6-3.2v-4.5L16 19.5z" fill="#F8D93A"/>
-  <path d="M25 14v6" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
-</svg>
-```
+| File (in `brand/`) | Use |
+|---|---|
+| `uniworks-logo-blue.svg` | Default on white or Mist (wordmark `#1E4ADD`) |
+| `uniworks-logo-white.svg` | On Visa Blue, Night Navy or photos with a dark overlay |
+| `uniworks-logo-navy.svg` | One-colour print on light paper (wordmark `#14174F`) |
+| `uniworks-icon.svg` | App icon and avatar: white Unbounded "U" on Visa Blue with the flag underneath |
+| `favicon.svg` | Browser tab (rounded version of the icon) |
 
 | Rule | Value |
 |---|---|
+| Header | Height 26 px (18 px under 420 px, 15 px under 360 px) |
+| Footer | Height 30 px, white version |
+| Social share image | `images/share.png`, 1200×630, white logo on Visa Blue |
+| Minimum size | 15 px high on screen; below that, use the icon |
+| Clear space | At least the height of the "U" on every side |
+| Don't | Retype the name in another font, recolour the flag, put the flag before the name, stretch, add shadows or outlines, or place it on busy photos |
+
+The old graduation-cap mark is retired.
+
+---|---|
 | Header | Mark 32 px, wordmark 21 px, gap 10 px |
 | Footer | Mark 36 px, wordmark 24 px, white wordmark |
 | Small screens (≤420 px) | Mark 26 px, wordmark 18 px, gap 6 px |
@@ -73,7 +82,7 @@ Baseline taken from the live site (uniwork-uk.vercel.app, repo `budiartokr/uniwo
 ### Core palette
 | Role | Name | Hex | Used for |
 |---|---|---|---|
-| Primary | **Visa Blue** | `#1E4ADD` | Logo, links, primary buttons, hero background, active states, `theme-color` |
+| Primary | **Visa Blue** | `#1E4ADD` | Wordmark, links, primary buttons, hero background, active states, `theme-color` |
 | Accent | **Sun** | `#F8D93A` | Main call to action on blue/navy, highlight bars, focus ring, tagline accents, footer headings |
 | Ink | **Night Navy** | `#14174F` | Body text, headings, footer background, dark panels |
 | Deep ink | **Midnight** | `#0B1440` | Text on Sun, admin banners, deep shadows |
@@ -189,7 +198,7 @@ Max content width **1240–1280 px**, side padding `clamp(16px, 4vw, 56px)`, sec
 - Real photos of students (hero, duo, group, caller, laptop in `/images`, WebP).
 - On the hero, photos fade into the blue with a gradient mask from the left and top, so text stays readable.
 - Hide decorative photos on mobile (<900 px) to keep pages light.
-- No stock-style handshakes, no flags as decoration, no cartoon illustrations.
+- No stock-style handshakes, no cartoon illustrations. The UK flag appears only in the logo and icon, not as decoration elsewhere.
 
 ---
 
@@ -214,7 +223,7 @@ Rules:
 - Explain UK jargon in plain English (the site has a Jargon buster).
 
 ### Legal line (required wherever we give visa or work guidance)
-> UniWork UK gives general information, not immigration, tax or legal advice. Immigration advice in the UK is regulated by the Immigration Advice Authority: for your own case, speak to your university adviser or a registered immigration adviser.
+> UniWorks gives general information, not immigration, tax or legal advice. Immigration advice in the UK is regulated by the Immigration Advice Authority: for your own case, speak to your university adviser or a registered immigration adviser.
 
 Never call Global Talent Education services "immigration advice". Confirm the wording of any visa-document service under UK immigration advice rules before promoting it.
 
@@ -224,7 +233,7 @@ Never call Global Talent Education services "immigration advice". Confirm the wo
 
 | | |
 |---|---|
-| Email | admin@globaltalent-education.com (temporary, until a UniWork address exists) |
+| Email | admin@globaltalent-education.com (temporary, until a UniWorks address exists) |
 | Phone | Not published |
 | Website | www.globaltalent-education.com |
 | Operator | Global Talent Education |
@@ -235,8 +244,5 @@ Never call Global Talent Education services "immigration advice". Confirm the wo
 
 ## 10. Known inconsistencies to fix
 
-1. **Favicon doesn't match the logo.** The browser-tab SVG icon uses `#FFC83D` and `#393BE7` in a different shape; the app icons and header use the graduation-cap mark. Replace the favicon with the logo mark.
-2. **Fonts loaded twice.** Geist comes from Google Fonts *and* self-hosted files, and the `@font-face` block repeats 11 times. Keep one self-hosted block.
-3. **Two yellows.** `#F8D93A` (brand) and `#FFC83D` (favicon). Use `#F8D93A` only.
-4. **Privacy policy, terms and contact page** don't exist yet; add them to the footer bottom bar before promotion.
-5. **Social accounts** aren't set up; when they are, add icons to the footer Contact column.
+1. Fixed 14 Nov: favicon, duplicate fonts, second yellow, privacy policy and terms.
+2. **Social accounts** aren't set up; when they are, add icons to the footer Contact column.
